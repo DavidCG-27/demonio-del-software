@@ -1,0 +1,16 @@
+interface Vehicle {
+    void drive();
+}
+
+class Car implements Vehicle {
+    @Override
+    public void drive() {
+        System.out.println("Conduciendo un coche.");
+    }
+}
+
+class Bicycle {
+    public void pedal() {
+        System.out.println("Pedaleando una bicicleta.");
+    }
+}

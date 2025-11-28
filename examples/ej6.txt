@@ -1,0 +1,38 @@
+// Clase principal que crea las figuras
+class ShapeApp {
+    public Shape createShape(String type) {
+        if (type.equals("circle")) {
+            return new Circle();
+        } else if (type.equals("square")) {
+            return new Square();
+        } else if (type.equals("triangle")) {
+            return new Triangle();
+        } else {
+            throw new IllegalArgumentException("Tipo de figura inválido: " + type);
+        }
+    }
+}
+
+// Interfaz para figuras
+interface Shape {
+    void draw();
+}
+
+// Implementaciones concretas
+class Circle implements Shape {
+    public void draw() {
+        System.out.println("Dibujando un círculo.");
+    }
+}
+
+class Square implements Shape {
+    public void draw() {
+        System.out.println("Dibujando un cuadrado.");
+    }
+}
+
+class Triangle implements Shape {
+    public void draw() {
+        System.out.println("Dibujando un triángulo.");
+    }
+}

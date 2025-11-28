@@ -1,0 +1,32 @@
+// Clase principal que envía notificaciones
+class NotificationService {
+    public void sendNotification(String type, String message) {
+        if (type.equals("email")) {
+            EmailNotification email = new EmailNotification();
+            email.notify(message);
+        } else if (type.equals("sms")) {
+            SMSNotification sms = new SMSNotification();
+            sms.notify(message);
+        } else {
+            throw new IllegalArgumentException("Tipo de notificación inválido: " + type);
+        }
+    }
+}
+
+// Interfaz de notificaciones
+interface Notification {
+    void notify(String message);
+}
+
+// Implementaciones concretas
+class EmailNotification implements Notification {
+    public void notify(String message) {
+        System.out.println("Enviando correo: " + message);
+    }
+}
+
+class SMSNotification implements Notification {
+    public void notify(String message) {
+        System.out.println("Enviando SMS: " + message);
+    }
+}

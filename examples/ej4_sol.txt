@@ -1,0 +1,43 @@
+// STRATEGY
+// Interfaz para los descuentos
+interface DiscountStrategy {
+    double applyDiscount(double amount);
+}
+
+// Implementaciones de DiscountStrategy
+class FestiveDiscount implements DiscountStrategy {
+    public double applyDiscount(double amount) {
+        return amount * 0.2; // 20% descuento
+    }
+}
+
+class SeasonalDiscount implements DiscountStrategy {
+    public double applyDiscount(double amount) {
+        return amount * 0.15; // 15% descuento
+    }
+}
+
+class LoyaltyDiscount implements DiscountStrategy {
+    public double applyDiscount(double amount) {
+        return amount * 0.1; // 10% descuento
+    }
+}
+
+class NoDiscount implements DiscountStrategy {
+    public double applyDiscount(double amount) {
+        return 0; // Sin descuento
+    }
+}
+
+// Clase para calcular el precio con descuento
+class DiscountCalculator {
+    private DiscountStrategy discountStrategy;
+
+    public DiscountCalculator(DiscountStrategy discountStrategy) {
+        this.discountStrategy = discountStrategy;
+    }
+
+    public double calculateFinalAmount(double amount) {
+        return amount - discountStrategy.applyDiscount(amount);
+    }
+}

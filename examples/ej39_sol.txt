@@ -1,0 +1,75 @@
+//PROTOTYPE
+// Interfaz Prototype
+interface Prototype {
+    Prototype clone();
+}
+
+// Clase base de figuras
+abstract class Shape implements Prototype {
+    public int x, y;
+    public String color;
+
+    public Shape(int x, int y, String color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+    }
+
+    @Override
+    public abstract Shape clone();
+}
+
+// Figuras concretas
+class Circle extends Shape {
+    public int radius;
+
+    public Circle(int x, int y, String color, int radius) {
+        super(x, y, color);
+        this.radius = radius;
+    }
+
+    @Override
+    public Circle clone() {
+        return new Circle(this.x, this.y, this.color, this.radius);
+    }
+}
+
+class Rectangle extends Shape {
+    public int width, height;
+
+    public Rectangle(int x, int y, String color, int width, int height) {
+        super(x, y, color);
+        this.width = width;
+        this.height = height;
+    }
+
+    @Override
+    public Rectangle clone() {
+        return new Rectangle(this.x, this.y, this.color, this.width, this.height);
+    }
+}
+
+// Uso
+public class Main {
+    public static void main(String[] args) {
+        // Crear y clonar un círculo
+        Circle originalCircle = new Circle(10, 20, "Rojo", 15);
+        Circle clonedCircle = (Circle) originalCircle.clone();
+
+        System.out.println("Círculo original: x=" + originalCircle.x + ", y=" + originalCircle.y +
+                           ", color=" + originalCircle.color + ", radio=" + originalCircle.radius);
+        System.out.println("Círculo clonado: x=" + clonedCircle.x + ", y=" + clonedCircle.y +
+                           ", color=" + clonedCircle.color + ", radio=" + clonedCircle.radius);
+
+        // Crear y clonar un rectángulo
+        Rectangle originalRectangle = new Rectangle(5, 10, "Azul", 20, 30);
+        Rectangle clonedRectangle = (Rectangle) originalRectangle.clone();
+
+        System.out.println("Rectángulo original: x=" + originalRectangle.x + ", y=" + originalRectangle.y +
+                           ", color=" + originalRectangle.color + ", ancho=" + originalRectangle.width +
+                           ", alto=" + originalRectangle.height);
+        System.out.println("Rectángulo clonado: x=" + clonedRectangle.x + ", y=" + clonedRectangle.y +
+                           ", color=" + clonedRectangle.color + ", ancho=" + clonedRectangle.width +
+                           ", alto=" + clonedRectangle.height);
+    }
+}

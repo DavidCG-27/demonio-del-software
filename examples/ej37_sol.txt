@@ -1,0 +1,53 @@
+//OBSERVER
+import java.util.ArrayList;
+import java.util.List;
+
+// Sujeto observado
+class AlarmSystem {
+    private List<Observer> observers = new ArrayList<>();
+    private boolean alarmActive;
+
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    public void setAlarm(boolean status) {
+        this.alarmActive = status;
+        notifyObservers();
+    }
+
+    private void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update(alarmActive);
+        }
+    }
+}
+
+// Interfaz del observador
+interface Observer {
+    void update(boolean alarmStatus);
+}
+
+// Observador concreto
+class SecurityControl implements Observer {
+    @Override
+    public void update(boolean alarmStatus) {
+        System.out.println("Estado de la alarma: " + (alarmStatus ? "ACTIVA" : "INACTIVA"));
+    }
+}
+
+// Uso
+public class Main {
+    public static void main(String[] args) {
+        AlarmSystem alarm = new AlarmSystem();
+        Observer control = new SecurityControl();
+
+        alarm.addObserver(control);
+        alarm.setAlarm(true);
+        alarm.setAlarm(false);
+    }
+}

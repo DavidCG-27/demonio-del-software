@@ -1,0 +1,65 @@
+//VISITOR
+// Interfaz Visitor
+interface ReportVisitor {
+    void visit(SalesReport salesReport);
+    void visit(InventoryReport inventoryReport);
+}
+
+// Clase base Report
+abstract class Report {
+    public abstract void accept(ReportVisitor visitor);
+}
+
+// Clases concretas
+class SalesReport extends Report {
+    @Override
+    public void accept(ReportVisitor visitor) {
+        visitor.visit(this);
+    }
+}
+
+class InventoryReport extends Report {
+    @Override
+    public void accept(ReportVisitor visitor) {
+        visitor.visit(this);
+    }
+}
+
+// Visitantes concretos
+class PDFExportVisitor implements ReportVisitor {
+    @Override
+    public void visit(SalesReport salesReport) {
+        System.out.println("Exportando reporte de ventas a PDF.");
+    }
+
+    @Override
+    public void visit(InventoryReport inventoryReport) {
+        System.out.println("Exportando reporte de inventario a PDF.");
+    }
+}
+
+class CSVExportVisitor implements ReportVisitor {
+    @Override
+    public void visit(SalesReport salesReport) {
+        System.out.println("Exportando reporte de ventas a CSV.");
+    }
+
+    @Override
+    public void visit(InventoryReport inventoryReport) {
+        System.out.println("Exportando reporte de inventario a CSV.");
+    }
+}
+
+// Uso
+public class Main {
+    public static void main(String[] args) {
+        Report[] reports = {new SalesReport(), new InventoryReport()};
+        ReportVisitor pdfVisitor = new PDFExportVisitor();
+        ReportVisitor csvVisitor = new CSVExportVisitor();
+
+        for (Report report : reports) {
+            report.accept(pdfVisitor);
+            report.accept(csvVisitor);
+        }
+    }
+}

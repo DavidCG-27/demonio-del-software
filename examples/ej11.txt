@@ -1,0 +1,63 @@
+// Clase para representar archivos
+class File {
+    private String name;
+
+    public File(String name) {
+        this.name = name;
+    }
+
+    public void display() {
+        System.out.println("Archivo: " + name);
+    }
+}
+
+// Clase para representar directorios
+class Directory {
+    private String name;
+    private List<File> files = new ArrayList<>();
+    private List<Directory> directories = new ArrayList<>();
+
+    public Directory(String name) {
+        this.name = name;
+    }
+
+    public void addFile(File file) {
+        files.add(file);
+    }
+
+    public void addDirectory(Directory directory) {
+        directories.add(directory);
+    }
+
+    public void display() {
+        System.out.println("Directorio: " + name);
+        for (File file : files) {
+            file.display();
+        }
+        for (Directory directory : directories) {
+            directory.display();
+        }
+    }
+}
+
+// Uso del diseño sin Composite
+public class Main {
+    public static void main(String[] args) {
+        File file1 = new File("file1.txt");
+        File file2 = new File("file2.txt");
+
+        Directory subDir = new Directory("SubDirectory");
+        subDir.addFile(file1);
+
+        Directory rootDir = new Directory("RootDirectory");
+        rootDir.addFile(file2);
+        rootDir.addDirectory(subDir);
+
+        rootDir.display();
+        // Salida:
+        // Directorio: RootDirectory
+        // Archivo: file2.txt
+        // Directorio: SubDirectory
+        // Archivo: file1.txt
+    }
+}

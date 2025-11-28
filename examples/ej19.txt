@@ -1,0 +1,19 @@
+// Procesador de pagos con tarjeta de crédito
+class CreditCardPayment {
+    public void processPayment(double amount) {
+        System.out.println("Validando tarjeta de crédito...");
+        System.out.println("Procesando pago de $" + amount + " con tarjeta de crédito.");
+        System.out.println("Generando recibo...");
+        System.out.println("Pago con tarjeta de crédito completado.");
+    }
+}
+
+// Procesador de pagos con PayPal
+class PayPalPayment {
+    public void processPayment(double amount) {
+        System.out.println("Autenticando cuenta de PayPal...");
+        System.out.println("Procesando pago de $" + amount + " con PayPal.");
+        System.out.println("Generando recibo...");
+        System.out.println("Pago con PayPal completado.");
+    }
+}

@@ -1,0 +1,35 @@
+class MusicPlayer {
+    private String state = "STOPPED";
+
+    public void play() {
+        if (state.equals("PLAYING")) {
+            System.out.println("El reproductor ya está reproduciendo música.");
+        } else if (state.equals("PAUSED")) {
+            System.out.println("Reanudando reproducción.");
+            state = "PLAYING";
+        } else if (state.equals("STOPPED")) {
+            System.out.println("Iniciando reproducción.");
+            state = "PLAYING";
+        }
+    }
+
+    public void pause() {
+        if (state.equals("PLAYING")) {
+            System.out.println("Pausando reproducción.");
+            state = "PAUSED";
+        } else if (state.equals("PAUSED")) {
+            System.out.println("El reproductor ya está pausado.");
+        } else if (state.equals("STOPPED")) {
+            System.out.println("No se puede pausar, el reproductor está detenido.");
+        }
+    }
+
+    public void stop() {
+        if (state.equals("PLAYING") || state.equals("PAUSED")) {
+            System.out.println("Deteniendo reproducción.");
+            state = "STOPPED";
+        } else if (state.equals("STOPPED")) {
+            System.out.println("El reproductor ya está detenido.");
+        }
+    }
+}

@@ -1,0 +1,75 @@
+//COMMAND
+// Receptor
+class Light {
+    public void turnOn() {
+        System.out.println("La luz está encendida.");
+    }
+
+    public void turnOff() {
+        System.out.println("La luz está apagada.");
+    }
+
+    public void dim(int level) {
+        System.out.println("La luz está ajustada al nivel " + level + ".");
+    }
+}
+
+// Interfaz Command
+interface Command {
+    void execute();
+    void undo();
+}
+
+// Comandos concretos
+class TurnOnLightCommand implements Command {
+    private Light light;
+
+    public TurnOnLightCommand(Light light) {
+        this.light = light;
+    }
+
+    @Override
+    public void execute() {
+        light.turnOn();
+    }
+
+    @Override
+    public void undo() {
+        light.turnOff();
+    }
+}
+
+class TurnOffLightCommand implements Command {
+    private Light light;
+
+    public TurnOffLightCommand(Light light) {
+        this.light = light;
+    }
+
+    @Override
+    public void execute() {
+        light.turnOff();
+    }
+
+    @Override
+    public void undo() {
+        light.turnOn();
+    }
+}
+
+// Invoker
+class RemoteControl {
+    private Command command;
+
+    public void setCommand(Command command) {
+        this.command = command;
+    }
+
+    public void pressButton() {
+        command.execute();
+    }
+
+    public void pressUndo() {
+        command.undo();
+    }
+}

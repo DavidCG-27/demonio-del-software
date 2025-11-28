@@ -1,0 +1,30 @@
+class Product {
+    private int stock;
+    private StockManager manager;
+
+    public Product(StockManager manager) {
+        this.manager = manager;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+        manager.notifyStockChange(stock);
+    }
+}
+
+class StockManager {
+    public void notifyStockChange(int stock) {
+        System.out.println("Stock actualizado: " + stock);
+    }
+}
+
+// Uso
+public class Main {
+    public static void main(String[] args) {
+        StockManager manager = new StockManager();
+        Product product = new Product(manager);
+
+        product.setStock(50);
+        product.setStock(30);
+    }
+}

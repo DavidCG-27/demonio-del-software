@@ -1,0 +1,66 @@
+//COMMAND
+// Receptor
+class BankAccount {
+    private double balance = 0;
+
+    public void deposit(double amount) {
+        balance += amount;
+        System.out.println("Depositado: " + amount);
+    }
+
+    public void withdraw(double amount) {
+        balance -= amount;
+        System.out.println("Retirado: " + amount);
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+}
+
+// Interfaz Command
+interface Command {
+    void execute();
+    void undo();
+}
+
+// Comandos concretos
+class DepositCommand implements Command {
+    private BankAccount account;
+    private double amount;
+
+    public DepositCommand(BankAccount account, double amount) {
+        this.account = account;
+        this.amount = amount;
+    }
+
+    @Override
+    public void execute() {
+        account.deposit(amount);
+    }
+
+    @Override
+    public void undo() {
+        account.withdraw(amount);
+    }
+}
+
+class WithdrawCommand implements Command {
+    private BankAccount account;
+    private double amount;
+
+    public WithdrawCommand(BankAccount account, double amount) {
+        this.account = account;
+        this.amount = amount;
+    }
+
+    @Override
+    public void execute() {
+        account.withdraw(amount);
+    }
+
+    @Override
+    public void undo() {
+        account.deposit(amount);
+    }
+}

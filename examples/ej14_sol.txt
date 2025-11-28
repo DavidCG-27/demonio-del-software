@@ -1,0 +1,62 @@
+// COMPOSITE
+// Interfaz común para productos y paquetes
+interface CatalogComponent {
+    double getPrice();
+    void display();
+}
+
+// Implementación para productos individuales
+class Product implements CatalogComponent {
+    private String name;
+    private double price;
+
+    public Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    @Override
+    public double getPrice() {
+        return price;
+    }
+
+    @Override
+    public void display() {
+        System.out.println("Producto: " + name + ", Precio: " + price);
+    }
+}
+
+// Implementación para paquetes de productos
+class ProductBundle implements CatalogComponent {
+    private String name;
+    private List<CatalogComponent> components = new ArrayList<>();
+
+    public ProductBundle(String name) {
+        this.name = name;
+    }
+
+    public void add(CatalogComponent component) {
+        components.add(component);
+    }
+
+    public void remove(CatalogComponent component) {
+        components.remove(component);
+    }
+
+    @Override
+    public double getPrice() {
+        double total = 0;
+        for (CatalogComponent component : components) {
+            total += component.getPrice();
+        }
+        return total;
+    }
+
+    @Override
+    public void display() {
+        System.out.println("Paquete: " + name);
+        for (CatalogComponent component : components) {
+            component.display();
+        }
+    }
+}

@@ -1,0 +1,28 @@
+class TextEditor {
+    private StringBuilder text = new StringBuilder();
+
+    public void write(String words) {
+        text.append(words);
+    }
+
+    public void deleteLast(int length) {
+        text.delete(text.length() - length, text.length());
+    }
+
+    public String getText() {
+        return text.toString();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        TextEditor editor = new TextEditor();
+
+        editor.write("Hola ");
+        editor.write("mundo!");
+        System.out.println(editor.getText()); // Hola mundo!
+
+        editor.deleteLast(6);
+        System.out.println(editor.getText()); // Hola
+    }
+}

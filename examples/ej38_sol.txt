@@ -1,0 +1,66 @@
+//OBSERVER
+import java.util.ArrayList;
+import java.util.List;
+
+// Sujeto observado
+class NewsPublisher {
+    private List<Observer> subscribers = new ArrayList<>();
+
+    public void addSubscriber(Observer subscriber) {
+        subscribers.add(subscriber);
+    }
+
+    public void removeSubscriber(Observer subscriber) {
+        subscribers.remove(subscriber);
+    }
+
+    public void publishNews(String news) {
+        for (Observer subscriber : subscribers) {
+            subscriber.update(news);
+        }
+    }
+}
+
+// Interfaz del observador
+interface Observer {
+    void update(String news);
+}
+
+// Observadores concretos
+class EmailSubscriber implements Observer {
+    @Override
+    public void update(String news) {
+        System.out.println("Notificación por email: " + news);
+    }
+}
+
+class SMSSubscriber implements Observer {
+    @Override
+    public void update(String news) {
+        System.out.println("Notificación por SMS: " + news);
+    }
+}
+
+class AppSubscriber implements Observer {
+    @Override
+    public void update(String news) {
+        System.out.println("Notificación en la app: " + news);
+    }
+}
+
+// Uso
+public class Main {
+    public static void main(String[] args) {
+        NewsPublisher publisher = new NewsPublisher();
+
+        Observer emailSubscriber = new EmailSubscriber();
+        Observer smsSubscriber = new SMSSubscriber();
+        Observer appSubscriber = new AppSubscriber();
+
+        publisher.addSubscriber(emailSubscriber);
+        publisher.addSubscriber(smsSubscriber);
+        publisher.addSubscriber(appSubscriber);
+
+        publisher.publishNews("¡Nueva actualización disponible!");
+    }
+}

@@ -1,0 +1,40 @@
+class TransportManager {
+    public void manageTransport(String type) {
+        if (type.equals("car")) {
+            Car car = new Car();
+            car.deliver();
+        } else if (type.equals("bike")) {
+            Bike bike = new Bike();
+            bike.deliver();
+        } else if (type.equals("truck")) {
+            Truck truck = new Truck();
+            truck.deliver();
+        } else {
+            throw new IllegalArgumentException("Tipo de transporte inválido: " + type);
+        }
+    }
+}
+
+// Interfaz para transportes
+interface Transport {
+    void deliver();
+}
+
+// Implementaciones concretas
+class Car implements Transport {
+    public void deliver() {
+        System.out.println("Entregando con un auto.");
+    }
+}
+
+class Bike implements Transport {
+    public void deliver() {
+        System.out.println("Entregando con una bicicleta.");
+    }
+}
+
+class Truck implements Transport {
+    public void deliver() {
+        System.out.println("Entregando con un camión.");
+    }
+}

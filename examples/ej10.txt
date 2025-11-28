@@ -1,0 +1,52 @@
+// Clase base para gráficos
+abstract class Graphic {
+    public abstract void draw();
+}
+
+// Implementaciones concretas
+class Line extends Graphic {
+    @Override
+    public void draw() {
+        System.out.println("Dibujando una línea.");
+    }
+}
+
+class Rectangle extends Graphic {
+    @Override
+    public void draw() {
+        System.out.println("Dibujando un rectángulo.");
+    }
+}
+
+// Clase para manejar grupos de gráficos
+class GraphicGroup {
+    private List<Graphic> graphics = new ArrayList<>();
+
+    public void add(Graphic graphic) {
+        graphics.add(graphic);
+    }
+
+    public void remove(Graphic graphic) {
+        graphics.remove(graphic);
+    }
+
+    public void drawAll() {
+        for (Graphic graphic : graphics) {
+            graphic.draw();
+        }
+    }
+}
+
+// Uso del diseño sin Composite
+public class Main {
+    public static void main(String[] args) {
+        Line line = new Line();
+        Rectangle rectangle = new Rectangle();
+
+        GraphicGroup group = new GraphicGroup();
+        group.add(line);
+        group.add(rectangle);
+
+        group.drawAll(); // Dibujar todos los gráficos del grupo
+    }
+}

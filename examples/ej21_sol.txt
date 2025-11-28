@@ -1,0 +1,50 @@
+// TEMPLATE METHOD
+// Clase abstracta con el método plantilla
+abstract class BeverageMaker {
+    // Método plantilla final para garantizar el flujo fijo
+    public final void prepare() {
+        boilWater();
+        brew();
+        pourInCup();
+        addCondiments();
+    }
+
+    // Pasos comunes implementados en la clase base
+    private void boilWater() {
+        System.out.println("Hirviendo agua...");
+    }
+
+    private void pourInCup() {
+        System.out.println("Vertiendo en la taza...");
+    }
+
+    // Pasos específicos definidos por las subclases
+    protected abstract void brew();
+    protected abstract void addCondiments();
+}
+
+// Implementación para té
+class TeaMaker extends BeverageMaker {
+    @Override
+    protected void brew() {
+        System.out.println("Añadiendo hojas de té...");
+    }
+
+    @Override
+    protected void addCondiments() {
+        System.out.println("Añadiendo limón...");
+    }
+}
+
+// Implementación para café
+class CoffeeMaker extends BeverageMaker {
+    @Override
+    protected void brew() {
+        System.out.println("Añadiendo café molido...");
+    }
+
+    @Override
+    protected void addCondiments() {
+        System.out.println("Añadiendo azúcar y leche...");
+    }
+}

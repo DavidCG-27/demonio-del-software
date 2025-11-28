@@ -1,0 +1,89 @@
+//STATE
+// Interfaz para los estados
+interface State {
+    void insertCoin(VendingMachine context);
+    void selectProduct(VendingMachine context);
+    void dispense(VendingMachine context);
+}
+
+// Implementación del estado "Sin crédito"
+class NoCreditState implements State {
+    @Override
+    public void insertCoin(VendingMachine context) {
+        System.out.println("Crédito añadido.");
+        context.setState(new HasCreditState());
+    }
+
+    @Override
+    public void selectProduct(VendingMachine context) {
+        System.out.println("Introduce crédito primero.");
+    }
+
+    @Override
+    public void dispense(VendingMachine context) {
+        System.out.println("No hay crédito para dispensar.");
+    }
+}
+
+// Implementación del estado "Con crédito"
+class HasCreditState implements State {
+    @Override
+    public void insertCoin(VendingMachine context) {
+        System.out.println("Ya tienes crédito.");
+    }
+
+    @Override
+    public void selectProduct(VendingMachine context) {
+        System.out.println("Producto seleccionado.");
+        context.setState(new DispensedState());
+    }
+
+    @Override
+    public void dispense(VendingMachine context) {
+        System.out.println("Selecciona un producto primero.");
+    }
+}
+
+// Implementación del estado "Producto dispensado"
+class DispensedState implements State {
+    @Override
+    public void insertCoin(VendingMachine context) {
+        System.out.println("Espera a que se disponga el producto.");
+    }
+
+    @Override
+    public void selectProduct(VendingMachine context) {
+        System.out.println("Ya se ha seleccionado un producto.");
+    }
+
+    @Override
+    public void dispense(VendingMachine context) {
+        System.out.println("Producto dispensado.");
+        context.setState(new NoCreditState());
+    }
+}
+
+// Clase VendingMachine que actúa como contexto
+class VendingMachine {
+    private State state;
+
+    public VendingMachine() {
+        state = new NoCreditState(); // Estado inicial
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public void insertCoin() {
+        state.insertCoin(this);
+    }
+
+    public void selectProduct() {
+        state.selectProduct(this);
+    }
+
+    public void dispense() {
+        state.dispense(this);
+    }
+}

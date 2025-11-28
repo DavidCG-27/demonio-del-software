@@ -1,0 +1,33 @@
+class Light {
+    public void turnOn() {
+        System.out.println("La luz está encendida.");
+    }
+
+    public void turnOff() {
+        System.out.println("La luz está apagada.");
+    }
+
+    public void dim(int level) {
+        System.out.println("La luz está ajustada al nivel " + level + ".");
+    }
+}
+
+class RemoteControl {
+    private Light light;
+
+    public RemoteControl(Light light) {
+        this.light = light;
+    }
+
+    public void pressOnButton() {
+        light.turnOn();
+    }
+
+    public void pressOffButton() {
+        light.turnOff();
+    }
+
+    public void pressDimButton(int level) {
+        light.dim(level);
+    }
+}

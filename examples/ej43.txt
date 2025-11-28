@@ -1,0 +1,43 @@
+// Clase base para figuras
+abstract class Shape {
+    public abstract void draw();
+    public abstract void calculateArea();
+}
+
+// Clases concretas
+class Circle extends Shape {
+    public double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public void draw() {
+        System.out.println("Dibujando un círculo con radio: " + radius);
+    }
+
+    @Override
+    public void calculateArea() {
+        System.out.println("Área del círculo: " + (Math.PI * radius * radius));
+    }
+}
+
+class Rectangle extends Shape {
+    public double width, height;
+
+    public Rectangle(double width, double height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    @Override
+    public void draw() {
+        System.out.println("Dibujando un rectángulo de dimensiones: " + width + "x" + height);
+    }
+
+    @Override
+    public void calculateArea() {
+        System.out.println("Área del rectángulo: " + (width * height));
+    }
+}

@@ -1,0 +1,13 @@
+class DiscountCalculator {
+    public double calculateDiscount(String discountType, double amount) {
+        if (discountType.equals("FESTIVE")) {
+            return amount * 0.2; // 20% descuento
+        } else if (discountType.equals("SEASONAL")) {
+            return amount * 0.15; // 15% descuento
+        } else if (discountType.equals("LOYALTY")) {
+            return amount * 0.1; // 10% descuento
+        } else {
+            return 0; // Sin descuento
+        }
+    }
+}

@@ -1,0 +1,12 @@
+class FormValidator {
+    public boolean validate(String field, String value) {
+        if (field.equals("email")) {
+            return value.matches("^[A-Za-z0-9+_.-]+@(.+)$");
+        } else if (field.equals("phone")) {
+            return value.matches("^\\+?[0-9]{10,13}$");
+        } else if (field.equals("password")) {
+            return value.length() >= 8;
+        }
+        return false;
+    }
+}

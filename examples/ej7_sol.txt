@@ -1,0 +1,43 @@
+// FACTORY METHOD
+// Clase abstracta para servicios de notificaciones
+abstract class NotificationService {
+    public abstract Notification createNotification();
+
+    public void sendNotification(String message) {
+        Notification notification = createNotification();
+        notification.notify(message);
+    }
+}
+
+// Subclases que implementan la fábrica
+class EmailNotificationService extends NotificationService {
+    @Override
+    public Notification createNotification() {
+        return new EmailNotification();
+    }
+}
+
+class SMSNotificationService extends NotificationService {
+    @Override
+    public Notification createNotification() {
+        return new SMSNotification();
+    }
+}
+
+// Interfaz de notificaciones
+interface Notification {
+    void notify(String message);
+}
+
+// Implementaciones concretas
+class EmailNotification implements Notification {
+    public void notify(String message) {
+        System.out.println("Enviando correo: " + message);
+    }
+}
+
+class SMSNotification implements Notification {
+    public void notify(String message) {
+        System.out.println("Enviando SMS: " + message);
+    }
+}

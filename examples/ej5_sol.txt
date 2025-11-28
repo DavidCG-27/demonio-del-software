@@ -1,0 +1,70 @@
+import java.util.Arrays;
+// STRATEGY
+// Interfaz para estrategias de ordenamiento
+interface SortStrategy {
+    void sort(int[] array);
+}
+
+// Implementación de ordenamiento burbuja
+class BubbleSort implements SortStrategy {
+    public void sort(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            for (int j = 0; j < array.length - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+    }
+}
+
+// Implementación de ordenamiento rápido
+class QuickSort implements SortStrategy {
+    public void sort(int[] array) {
+        quickSort(array, 0, array.length - 1);
+    }
+
+    private void quickSort(int[] array, int low, int high) {
+        if (low < high) {
+            int pi = partition(array, low, high);
+            quickSort(array, low, pi - 1);
+            quickSort(array, pi + 1, high);
+        }
+    }
+
+    private int partition(int[] array, int low, int high) {
+        int pivot = array[high];
+        int i = (low - 1);
+        for (int j = low; j < high; j++) {
+            if (array[j] <= pivot) {
+                i++;
+                int temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        int temp = array[i + 1];
+        array[i + 1] = array[high];
+        array[high] = temp;
+        return i + 1;
+    }
+}
+
+// Clase Sorter que usa el patrón Strategy
+class Sorter {
+    private SortStrategy sortStrategy;
+
+    public Sorter(SortStrategy sortStrategy) {
+        this.sortStrategy = sortStrategy;
+    }
+
+    public void setSortStrategy(SortStrategy sortStrategy) {
+        this.sortStrategy = sortStrategy;
+    }
+
+    public void sort(int[] array) {
+        sortStrategy.sort(array);
+    }
+}

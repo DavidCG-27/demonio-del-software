@@ -1,0 +1,56 @@
+// FACTORY METHOD
+// Clase abstracta para generar reportes
+abstract class ReportGenerator {
+    public abstract Report createReport();
+
+    public void generate() {
+        Report report = createReport();
+        report.generate();
+    }
+}
+
+// Subclases que implementan la fábrica
+class PDFReportGenerator extends ReportGenerator {
+    @Override
+    public Report createReport() {
+        return new PDFReport();
+    }
+}
+
+class CSVReportGenerator extends ReportGenerator {
+    @Override
+    public Report createReport() {
+        return new CSVReport();
+    }
+}
+
+class ExcelReportGenerator extends ReportGenerator {
+    @Override
+    public Report createReport() {
+        return new ExcelReport();
+    }
+}
+
+// Interfaz para los reportes
+interface Report {
+    void generate();
+}
+
+// Implementaciones concretas
+class PDFReport implements Report {
+    public void generate() {
+        System.out.println("Generando reporte en formato PDF.");
+    }
+}
+
+class CSVReport implements Report {
+    public void generate() {
+        System.out.println("Generando reporte en formato CSV.");
+    }
+}
+
+class ExcelReport implements Report {
+    public void generate() {
+        System.out.println("Generando reporte en formato Excel.");
+    }
+}

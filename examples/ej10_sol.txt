@@ -1,0 +1,40 @@
+// COMPOSITE
+// Interfaz común para todos los gráficos
+interface Graphic {
+    void draw();
+}
+
+// Implementaciones concretas
+class Line implements Graphic {
+    @Override
+    public void draw() {
+        System.out.println("Dibujando una línea.");
+    }
+}
+
+class Rectangle implements Graphic {
+    @Override
+    public void draw() {
+        System.out.println("Dibujando un rectángulo.");
+    }
+}
+
+// Clase compuesta que puede contener gráficos simples o compuestos
+class CompositeGraphic implements Graphic {
+    private List<Graphic> children = new ArrayList<>();
+
+    public void add(Graphic graphic) {
+        children.add(graphic);
+    }
+
+    public void remove(Graphic graphic) {
+        children.remove(graphic);
+    }
+
+    @Override
+    public void draw() {
+        for (Graphic child : children) {
+            child.draw();
+        }
+    }
+}

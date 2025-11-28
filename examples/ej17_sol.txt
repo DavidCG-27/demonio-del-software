@@ -1,0 +1,110 @@
+//STATE
+// Interfaz común para los estados de la puerta
+interface DoorState {
+    void lock(Door context);
+    void unlock(Door context);
+    void open(Door context);
+    void close(Door context);
+}
+
+// Implementación del estado "Cerrada"
+class ClosedState implements DoorState {
+    @Override
+    public void lock(Door context) {
+        System.out.println("Puerta bloqueada.");
+        context.setState(new LockedState());
+    }
+
+    @Override
+    public void unlock(Door context) {
+        System.out.println("La puerta no está bloqueada.");
+    }
+
+    @Override
+    public void open(Door context) {
+        System.out.println("Puerta abierta.");
+        context.setState(new OpenState());
+    }
+
+    @Override
+    public void close(Door context) {
+        System.out.println("La puerta ya está cerrada.");
+    }
+}
+
+// Implementación del estado "Bloqueada"
+class LockedState implements DoorState {
+    @Override
+    public void lock(Door context) {
+        System.out.println("La puerta ya está bloqueada.");
+    }
+
+    @Override
+    public void unlock(Door context) {
+        System.out.println("Puerta desbloqueada.");
+        context.setState(new ClosedState());
+    }
+
+    @Override
+    public void open(Door context) {
+        System.out.println("La puerta está bloqueada. Desbloquéala primero.");
+    }
+
+    @Override
+    public void close(Door context) {
+        System.out.println("La puerta ya está cerrada.");
+    }
+}
+
+// Implementación del estado "Abierta"
+class OpenState implements DoorState {
+    @Override
+    public void lock(Door context) {
+        System.out.println("No se puede bloquear la puerta mientras está abierta.");
+    }
+
+    @Override
+    public void unlock(Door context) {
+        System.out.println("La puerta no está bloqueada.");
+    }
+
+    @Override
+    public void open(Door context) {
+        System.out.println("La puerta ya está abierta.");
+    }
+
+    @Override
+    public void close(Door context) {
+        System.out.println("Puerta cerrada.");
+        context.setState(new ClosedState());
+    }
+}
+
+// Clase Door que actúa como contexto
+class Door {
+    private DoorState state;
+
+    public Door() {
+        state = new ClosedState(); // Estado inicial
+    }
+
+    public void setState(DoorState state) {
+        this.state = state;
+    }
+
+    public void lock() {
+        state.lock(this);
+    }
+
+    public void unlock() {
+        state.unlock(this);
+    }
+
+    public void open() {
+        state.open(this);
+    }
+
+    public void close() {
+        state.close(this);
+    }
+}

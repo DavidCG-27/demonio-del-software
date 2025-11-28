@@ -1,0 +1,63 @@
+// Clase para representar opciones individuales del menú
+class MenuItem {
+    private String name;
+
+    public MenuItem(String name) {
+        this.name = name;
+    }
+
+    public void display() {
+        System.out.println("Opción: " + name);
+    }
+}
+
+// Clase para representar menús
+class Menu {
+    private String name;
+    private List<MenuItem> menuItems = new ArrayList<>();
+    private List<Menu> subMenus = new ArrayList<>();
+
+    public Menu(String name) {
+        this.name = name;
+    }
+
+    public void addMenuItem(MenuItem item) {
+        menuItems.add(item);
+    }
+
+    public void addSubMenu(Menu subMenu) {
+        subMenus.add(subMenu);
+    }
+
+    public void display() {
+        System.out.println("Menú: " + name);
+        for (MenuItem item : menuItems) {
+            item.display();
+        }
+        for (Menu subMenu : subMenus) {
+            subMenu.display();
+        }
+    }
+}
+
+// Uso sin Composite
+public class Main {
+    public static void main(String[] args) {
+        MenuItem item1 = new MenuItem("Abrir");
+        MenuItem item2 = new MenuItem("Guardar");
+
+        Menu subMenu = new Menu("Archivo");
+        subMenu.addMenuItem(item1);
+        subMenu.addMenuItem(item2);
+
+        Menu mainMenu = new Menu("Principal");
+        mainMenu.addSubMenu(subMenu);
+
+        mainMenu.display();
+        // Salida:
+        // Menú: Principal
+        // Menú: Archivo
+        // Opción: Abrir
+        // Opción: Guardar
+    }
+}

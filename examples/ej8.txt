@@ -1,0 +1,40 @@
+class ReportGenerator {
+    public void generateReport(String type) {
+        if (type.equals("PDF")) {
+            PDFReport pdfReport = new PDFReport();
+            pdfReport.generate();
+        } else if (type.equals("CSV")) {
+            CSVReport csvReport = new CSVReport();
+            csvReport.generate();
+        } else if (type.equals("Excel")) {
+            ExcelReport excelReport = new ExcelReport();
+            excelReport.generate();
+        } else {
+            throw new IllegalArgumentException("Tipo de reporte inválido: " + type);
+        }
+    }
+}
+
+// Interfaz para los reportes
+interface Report {
+    void generate();
+}
+
+// Implementaciones concretas
+class PDFReport implements Report {
+    public void generate() {
+        System.out.println("Generando reporte en formato PDF.");
+    }
+}
+
+class CSVReport implements Report {
+    public void generate() {
+        System.out.println("Generando reporte en formato CSV.");
+    }
+}
+
+class ExcelReport implements Report {
+    public void generate() {
+        System.out.println("Generando reporte en formato Excel.");
+    }
+}

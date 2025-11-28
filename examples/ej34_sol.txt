@@ -1,0 +1,55 @@
+//DECORATOR
+interface Cart {
+    void checkout(double total);
+}
+
+class BasicCart implements Cart {
+    @Override
+    public void checkout(double total) {
+        System.out.println("Total final: $" + total);
+    }
+}
+
+abstract class CartDecorator implements Cart {
+    protected Cart cart;
+
+    public CartDecorator(Cart cart) {
+        this.cart = cart;
+    }
+
+    @Override
+    public void checkout(double total) {
+        cart.checkout(total);
+    }
+}
+
+class DiscountDecorator extends CartDecorator {
+    public DiscountDecorator(Cart cart) {
+        super(cart);
+    }
+
+    @Override
+    public void checkout(double total) {
+        super.checkout(total * 0.9);
+    }
+}
+
+class FreeShippingDecorator extends CartDecorator {
+    public FreeShippingDecorator(Cart cart) {
+        super(cart);
+    }
+
+    @Override
+    public void checkout(double total) {
+        System.out.println("Envío gratuito aplicado");
+        super.checkout(total);
+    }
+}
+
+// Uso
+public class Main {
+    public static void main(String[] args) {
+        Cart cart = new FreeShippingDecorator(new DiscountDecorator(new BasicCart()));
+        cart.checkout(100.0);
+    }
+}

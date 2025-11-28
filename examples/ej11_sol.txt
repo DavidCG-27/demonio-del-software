@@ -1,0 +1,45 @@
+// COMPOSITE	
+// Interfaz común para archivos y directorios
+interface FileSystemComponent {
+    void display();
+}
+
+// Implementación para archivos
+class File implements FileSystemComponent {
+    private String name;
+
+    public File(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void display() {
+        System.out.println("Archivo: " + name);
+    }
+}
+
+// Implementación para directorios
+class Directory implements FileSystemComponent {
+    private String name;
+    private List<FileSystemComponent> components = new ArrayList<>();
+
+    public Directory(String name) {
+        this.name = name;
+    }
+
+    public void add(FileSystemComponent component) {
+        components.add(component);
+    }
+
+    public void remove(FileSystemComponent component) {
+        components.remove(component);
+    }
+
+    @Override
+    public void display() {
+        System.out.println("Directorio: " + name);
+        for (FileSystemComponent component : components) {
+            component.display();
+        }
+    }
+}

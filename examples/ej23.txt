@@ -1,0 +1,22 @@
+interface Shape {
+    void draw();
+    void resize();
+}
+
+class Line implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("Dibujando una línea.");
+    }
+
+    @Override
+    public void resize() {
+        System.out.println("Redimensionando una línea.");
+    }
+}
+
+class TextView {
+    public void displayText() {
+        System.out.println("Mostrando texto.");
+    }
+}

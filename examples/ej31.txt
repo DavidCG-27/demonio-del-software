@@ -1,0 +1,19 @@
+class SalesTicket {
+    private boolean hasHeader;
+    private boolean hasFooter;
+
+    public SalesTicket(boolean hasHeader, boolean hasFooter) {
+        this.hasHeader = hasHeader;
+        this.hasFooter = hasFooter;
+    }
+
+    public void printTicket() {
+        if (hasHeader) {
+            System.out.println("Cabecera estándar");
+        }
+        System.out.println("Contenido del ticket");
+        if (hasFooter) {
+            System.out.println("Pie de página estándar");
+        }
+    }
+}

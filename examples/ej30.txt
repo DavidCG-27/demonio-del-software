@@ -1,0 +1,17 @@
+class BankAccount {
+    private double balance = 0;
+
+    public void deposit(double amount) {
+        balance += amount;
+        System.out.println("Depositado: " + amount);
+    }
+
+    public void withdraw(double amount) {
+        balance -= amount;
+        System.out.println("Retirado: " + amount);
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+}

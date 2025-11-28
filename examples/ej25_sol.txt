@@ -1,0 +1,20 @@
+//ADAPTER
+class JSONFileReaderAdapter implements FileReader {
+    private JSONReader jsonReader;
+
+    public JSONFileReaderAdapter(JSONReader jsonReader) {
+        this.jsonReader = jsonReader;
+    }
+
+    @Override
+    public String readFile(String path) {
+        return jsonReader.parseJSON(path);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        FileReader fileReader = new JSONFileReaderAdapter(new JSONReader());
+        System.out.println(fileReader.readFile("archivo.json"));
+    }
+}

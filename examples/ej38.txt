@@ -1,0 +1,47 @@
+class NewsPublisher {
+    private EmailSubscriber emailSubscriber;
+    private SMSSubscriber smsSubscriber;
+
+    public void addEmailSubscriber(EmailSubscriber subscriber) {
+        this.emailSubscriber = subscriber;
+    }
+
+    public void addSMSSubscriber(SMSSubscriber subscriber) {
+        this.smsSubscriber = subscriber;
+    }
+
+    public void publishNews(String news) {
+        if (emailSubscriber != null) {
+            emailSubscriber.notify(news);
+        }
+        if (smsSubscriber != null) {
+            smsSubscriber.notify(news);
+        }
+    }
+}
+
+class EmailSubscriber {
+    public void notify(String news) {
+        System.out.println("Notificación por email: " + news);
+    }
+}
+
+class SMSSubscriber {
+    public void notify(String news) {
+        System.out.println("Notificación por SMS: " + news);
+    }
+}
+
+// Uso
+public class Main {
+    public static void main(String[] args) {
+        NewsPublisher publisher = new NewsPublisher();
+        EmailSubscriber emailSubscriber = new EmailSubscriber();
+        SMSSubscriber smsSubscriber = new SMSSubscriber();
+
+        publisher.addEmailSubscriber(emailSubscriber);
+        publisher.addSMSSubscriber(smsSubscriber);
+
+        publisher.publishNews("¡Nueva actualización disponible!");
+    }
+}

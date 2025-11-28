@@ -1,0 +1,53 @@
+//OBSERVER
+import java.util.ArrayList;
+import java.util.List;
+
+// Sujeto observado
+class Product {
+    private List<Observer> observers = new ArrayList<>();
+    private int stock;
+
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+        notifyObservers();
+    }
+
+    private void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update(stock);
+        }
+    }
+}
+
+// Interfaz del observador
+interface Observer {
+    void update(int stock);
+}
+
+// Observador concreto
+class StockManager implements Observer {
+    @Override
+    public void update(int stock) {
+        System.out.println("Stock actualizado: " + stock);
+    }
+}
+
+// Uso
+public class Main {
+    public static void main(String[] args) {
+        Product product = new Product();
+        Observer manager = new StockManager();
+
+        product.addObserver(manager);
+        product.setStock(50);
+        product.setStock(30);
+    }
+}

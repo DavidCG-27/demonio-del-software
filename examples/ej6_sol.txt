@@ -1,0 +1,56 @@
+// FACTORY METHOD
+// Clase abstracta con el método factory
+abstract class ShapeFactory {
+    public abstract Shape createShape();
+
+    public void render() {
+        Shape shape = createShape();
+        shape.draw();
+    }
+}
+
+// Implementaciones concretas de la fábrica
+class CircleFactory extends ShapeFactory {
+    @Override
+    public Shape createShape() {
+        return new Circle();
+    }
+}
+
+class SquareFactory extends ShapeFactory {
+    @Override
+    public Shape createShape() {
+        return new Square();
+    }
+}
+
+class TriangleFactory extends ShapeFactory {
+    @Override
+    public Shape createShape() {
+        return new Triangle();
+    }
+}
+
+// Interfaz para figuras
+interface Shape {
+    void draw();
+}
+
+// Implementaciones concretas
+class Circle implements Shape {
+    public void draw() {
+        System.out.println("Dibujando un círculo.");
+    }
+}
+
+class Square implements Shape {
+    public void draw() {
+        System.out.println("Dibujando un cuadrado.");
+    }
+}
+
+class Triangle implements Shape {
+    public void draw() {
+        System.out.println("Dibujando un triángulo.");
+    }
+}

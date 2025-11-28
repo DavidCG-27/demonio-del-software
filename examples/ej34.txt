@@ -1,0 +1,19 @@
+class ShoppingCart {
+    private boolean hasDiscount;
+    private boolean hasFreeShipping;
+
+    public ShoppingCart(boolean hasDiscount, boolean hasFreeShipping) {
+        this.hasDiscount = hasDiscount;
+        this.hasFreeShipping = hasFreeShipping;
+    }
+
+    public void checkout(double total) {
+        if (hasDiscount) {
+            total *= 0.9;
+        }
+        if (hasFreeShipping) {
+            System.out.println("Envío gratuito aplicado");
+        }
+        System.out.println("Total final: $" + total);
+    }
+}

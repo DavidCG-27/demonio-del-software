@@ -1,0 +1,36 @@
+class VendingMachine {
+    private String state = "NO_CREDIT";
+
+    public void insertCoin() {
+        if (state.equals("NO_CREDIT")) {
+            System.out.println("Crédito añadido.");
+            state = "HAS_CREDIT";
+        } else if (state.equals("HAS_CREDIT")) {
+            System.out.println("Ya tienes crédito.");
+        } else if (state.equals("DISPENSED")) {
+            System.out.println("Espera a que se disponga el producto.");
+        }
+    }
+
+    public void selectProduct() {
+        if (state.equals("NO_CREDIT")) {
+            System.out.println("Introduce crédito primero.");
+        } else if (state.equals("HAS_CREDIT")) {
+            System.out.println("Producto seleccionado.");
+            state = "DISPENSED";
+        } else if (state.equals("DISPENSED")) {
+            System.out.println("Ya se ha seleccionado un producto.");
+        }
+    }
+
+    public void dispense() {
+        if (state.equals("NO_CREDIT")) {
+            System.out.println("No hay crédito para dispensar.");
+        } else if (state.equals("HAS_CREDIT")) {
+            System.out.println("Selecciona un producto primero.");
+        } else if (state.equals("DISPENSED")) {
+            System.out.println("Producto dispensado.");
+            state = "NO_CREDIT";
+        }
+    }
+}

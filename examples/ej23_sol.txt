@@ -1,0 +1,28 @@
+//ADAPTER
+class TextShapeAdapter implements Shape {
+    private TextView textView;
+
+    public TextShapeAdapter(TextView textView) {
+        this.textView = textView;
+    }
+
+    @Override
+    public void draw() {
+        textView.displayText();
+    }
+
+    @Override
+    public void resize() {
+        System.out.println("No se puede redimensionar el texto.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Shape line = new Line();
+        line.draw();
+
+        Shape textShape = new TextShapeAdapter(new TextView());
+        textShape.draw();
+    }
+}

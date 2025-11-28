@@ -1,0 +1,65 @@
+// Clase para representar a empleados individuales
+class Employee {
+    private String name;
+    private String role;
+
+    public Employee(String name, String role) {
+        this.name = name;
+        this.role = role;
+    }
+
+    public void showDetails() {
+        System.out.println("Empleado: " + name + ", Rol: " + role);
+    }
+}
+
+// Clase para representar equipos de trabajo
+class Team {
+    private String name;
+    private List<Employee> employees = new ArrayList<>();
+    private List<Team> subTeams = new ArrayList<>();
+
+    public Team(String name) {
+        this.name = name;
+    }
+
+    public void addEmployee(Employee employee) {
+        employees.add(employee);
+    }
+
+    public void addSubTeam(Team team) {
+        subTeams.add(team);
+    }
+
+    public void showDetails() {
+        System.out.println("Equipo: " + name);
+        for (Employee employee : employees) {
+            employee.showDetails();
+        }
+        for (Team subTeam : subTeams) {
+            subTeam.showDetails();
+        }
+    }
+}
+
+// Uso sin Composite
+public class Main {
+    public static void main(String[] args) {
+        Employee e1 = new Employee("Juan", "Desarrollador");
+        Employee e2 = new Employee("Ana", "Tester");
+
+        Team subTeam = new Team("Equipo de QA");
+        subTeam.addEmployee(e2);
+
+        Team mainTeam = new Team("Equipo de Desarrollo");
+        mainTeam.addEmployee(e1);
+        mainTeam.addSubTeam(subTeam);
+
+        mainTeam.showDetails();
+        // Salida:
+        // Equipo: Equipo de Desarrollo
+        // Empleado: Juan, Rol: Desarrollador
+        // Equipo: Equipo de QA
+        // Empleado: Ana, Rol: Tester
+    }
+}

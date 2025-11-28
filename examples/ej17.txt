@@ -1,0 +1,43 @@
+class Door {
+    private String state = "CLOSED";
+
+    public void lock() {
+        if (state.equals("CLOSED")) {
+            System.out.println("Puerta bloqueada.");
+            state = "LOCKED";
+        } else if (state.equals("LOCKED")) {
+            System.out.println("La puerta ya está bloqueada.");
+        } else if (state.equals("OPEN")) {
+            System.out.println("No se puede bloquear la puerta mientras está abierta.");
+        }
+    }
+
+    public void unlock() {
+        if (state.equals("LOCKED")) {
+            System.out.println("Puerta desbloqueada.");
+            state = "CLOSED";
+        } else if (state.equals("CLOSED") || state.equals("OPEN")) {
+            System.out.println("La puerta no está bloqueada.");
+        }
+    }
+
+    public void open() {
+        if (state.equals("CLOSED")) {
+            System.out.println("Puerta abierta.");
+            state = "OPEN";
+        } else if (state.equals("LOCKED")) {
+            System.out.println("La puerta está bloqueada. Desbloquéala primero.");
+        } else if (state.equals("OPEN")) {
+            System.out.println("La puerta ya está abierta.");
+        }
+    }
+
+    public void close() {
+        if (state.equals("OPEN")) {
+            System.out.println("Puerta cerrada.");
+            state = "CLOSED";
+        } else if (state.equals("CLOSED") || state.equals("LOCKED")) {
+            System.out.println("La puerta ya está cerrada.");
+        }
+    }
+}

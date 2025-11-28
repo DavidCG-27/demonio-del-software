@@ -1,0 +1,22 @@
+//ADAPTER
+class BicycleAdapter implements Vehicle {
+    private Bicycle bicycle;
+
+    public BicycleAdapter(Bicycle bicycle) {
+        this.bicycle = bicycle;
+    }
+
+    @Override
+    public void drive() {
+        bicycle.pedal();
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Vehicle car = new Car();
+        car.drive();
+
+        Vehicle bicycle = new BicycleAdapter(new Bicycle());
+        bicycle.drive();
+    }
+}

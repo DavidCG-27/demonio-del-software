@@ -1,0 +1,97 @@
+// STRATEGY
+// Interfaces para los comportamientos
+interface FlyBehavior {
+    void fly();
+}
+
+interface QuackBehavior {
+    void quack();
+}
+
+// Implementaciones de FlyBehavior
+class FlyWithWings implements FlyBehavior {
+    public void fly() {
+        System.out.println("Estoy volando con alas.");
+    }
+}
+
+class NoFly implements FlyBehavior {
+    public void fly() {
+        System.out.println("No puedo volar.");
+    }
+}
+
+// Implementaciones de QuackBehavior
+class Quack implements QuackBehavior {
+    public void quack() {
+        System.out.println("Quack!");
+    }
+}
+
+class Squeak implements QuackBehavior {
+    public void quack() {
+        System.out.println("Squeak!");
+    }
+}
+
+class MuteQuack implements QuackBehavior {
+    public void quack() {
+        System.out.println("...");
+    }
+}
+
+// Clase base para los patos
+abstract class Duck {
+    FlyBehavior flyBehavior;
+    QuackBehavior quackBehavior;
+
+    public Duck(FlyBehavior flyBehavior, QuackBehavior quackBehavior) {
+        this.flyBehavior = flyBehavior;
+        this.quackBehavior = quackBehavior;
+    }
+
+    public void performFly() {
+        flyBehavior.fly();
+    }
+
+    public void performQuack() {
+        quackBehavior.quack();
+    }
+
+    public void swim() {
+        System.out.println("Estoy nadando.");
+    }
+
+    public abstract void display();
+}
+
+// Tipos de patos
+class MallardDuck extends Duck {
+    public MallardDuck() {
+        super(new FlyWithWings(), new Quack());
+    }
+
+    public void display() {
+        System.out.println("Soy un pato Mallard.");
+    }
+}
+
+class RubberDuck extends Duck {
+    public RubberDuck() {
+        super(new NoFly(), new Squeak());
+    }
+
+    public void display() {
+        System.out.println("Soy un pato de goma.");
+    }
+}
+
+class DecoyDuck extends Duck {
+    public DecoyDuck() {
+        super(new NoFly(), new MuteQuack());
+    }
+
+    public void display() {
+        System.out.println("Soy un señuelo.");
+    }
+}

@@ -1,0 +1,67 @@
+// Clase para productos individuales
+class Product {
+    private String name;
+    private double price;
+
+    public Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void display() {
+        System.out.println("Producto: " + name + ", Precio: " + price);
+    }
+}
+
+// Clase para paquetes de productos
+class ProductBundle {
+    private String name;
+    private List<Product> products = new ArrayList<>();
+
+    public ProductBundle(String name) {
+        this.name = name;
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
+    }
+
+    public double getTotalPrice() {
+        double total = 0;
+        for (Product product : products) {
+            total += product.getPrice();
+        }
+        return total;
+    }
+
+    public void display() {
+        System.out.println("Paquete: " + name);
+        for (Product product : products) {
+            product.display();
+        }
+    }
+}
+
+// Uso sin Composite
+public class Main {
+    public static void main(String[] args) {
+        Product prod1 = new Product("Laptop", 1000);
+        Product prod2 = new Product("Mouse", 50);
+
+        ProductBundle bundle = new ProductBundle("Pack de Oficina");
+        bundle.addProduct(prod1);
+        bundle.addProduct(prod2);
+
+        bundle.display();
+        System.out.println("Precio total del paquete: " + bundle.getTotalPrice());
+        // Salida:
+        // Paquete: Pack de Oficina
+        // Producto: Laptop, Precio: 1000.0
+        // Producto: Mouse, Precio: 50.0
+        // Precio total del paquete: 1050.0
+    }
+}

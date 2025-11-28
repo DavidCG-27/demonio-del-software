@@ -1,0 +1,19 @@
+class Message {
+    private boolean isEncrypted;
+    private boolean isCompressed;
+
+    public Message(boolean isEncrypted, boolean isCompressed) {
+        this.isEncrypted = isEncrypted;
+        this.isCompressed = isCompressed;
+    }
+
+    public void send(String content) {
+        if (isEncrypted) {
+            content = "Encrypted(" + content + ")";
+        }
+        if (isCompressed) {
+            content = "Compressed(" + content + ")";
+        }
+        System.out.println("Enviando mensaje: " + content);
+    }
+}

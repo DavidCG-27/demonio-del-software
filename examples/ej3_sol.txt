@@ -1,0 +1,37 @@
+// STRATEGY
+// Interfaz para validación
+interface ValidationStrategy {
+    boolean validate(String value);
+}
+
+// Implementaciones de ValidationStrategy
+class EmailValidation implements ValidationStrategy {
+    public boolean validate(String value) {
+        return value.matches("^[A-Za-z0-9+_.-]+@(.+)$");
+    }
+}
+
+class PhoneValidation implements ValidationStrategy {
+    public boolean validate(String value) {
+        return value.matches("^\\+?[0-9]{10,13}$");
+    }
+}
+
+class PasswordValidation implements ValidationStrategy {
+    public boolean validate(String value) {
+        return value.length() >= 8;
+    }
+}
+
+// Clase para validación de campos
+class FieldValidator {
+    private ValidationStrategy validationStrategy;
+
+    public FieldValidator(ValidationStrategy validationStrategy) {
+        this.validationStrategy = validationStrategy;
+    }
+
+    public boolean validate(String value) {
+        return validationStrategy.validate(value);
+    }
+}

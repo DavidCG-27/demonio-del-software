@@ -1,0 +1,91 @@
+//STATE
+// Interfaz común para los estados
+interface PlayerState {
+    void play(MusicPlayer context);
+    void pause(MusicPlayer context);
+    void stop(MusicPlayer context);
+}
+
+// Implementación del estado "Reproduciendo"
+class PlayingState implements PlayerState {
+    @Override
+    public void play(MusicPlayer context) {
+        System.out.println("El reproductor ya está reproduciendo música.");
+    }
+
+    @Override
+    public void pause(MusicPlayer context) {
+        System.out.println("Pausando reproducción.");
+        context.setState(new PausedState());
+    }
+
+    @Override
+    public void stop(MusicPlayer context) {
+        System.out.println("Deteniendo reproducción.");
+        context.setState(new StoppedState());
+    }
+}
+
+// Implementación del estado "Pausado"
+class PausedState implements PlayerState {
+    @Override
+    public void play(MusicPlayer context) {
+        System.out.println("Reanudando reproducción.");
+        context.setState(new PlayingState());
+    }
+
+    @Override
+    public void pause(MusicPlayer context) {
+        System.out.println("El reproductor ya está pausado.");
+    }
+
+    @Override
+    public void stop(MusicPlayer context) {
+        System.out.println("Deteniendo reproducción.");
+        context.setState(new StoppedState());
+    }
+}
+
+// Implementación del estado "Detenido"
+class StoppedState implements PlayerState {
+    @Override
+    public void play(MusicPlayer context) {
+        System.out.println("Iniciando reproducción.");
+        context.setState(new PlayingState());
+    }
+
+    @Override
+    public void pause(MusicPlayer context) {
+        System.out.println("No se puede pausar, el reproductor está detenido.");
+    }
+
+    @Override
+    public void stop(MusicPlayer context) {
+        System.out.println("El reproductor ya está detenido.");
+    }
+}
+
+// Clase MusicPlayer que actúa como contexto
+class MusicPlayer {
+    private PlayerState state;
+
+    public MusicPlayer() {
+        state = new StoppedState(); // Estado inicial
+    }
+
+    public void setState(PlayerState state) {
+        this.state = state;
+    }
+
+    public void play() {
+        state.play(this);
+    }
+
+    public void pause() {
+        state.pause(this);
+    }
+
+    public void stop() {
+        state.stop(this);
+    }
+}

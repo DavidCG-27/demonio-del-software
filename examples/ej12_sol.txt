@@ -1,0 +1,45 @@
+// COMPOSITE	
+// Interfaz común para elementos del menú
+interface MenuComponent {
+    void display();
+}
+
+// Implementación para opciones individuales del menú
+class MenuItem implements MenuComponent {
+    private String name;
+
+    public MenuItem(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void display() {
+        System.out.println("Opción: " + name);
+    }
+}
+
+// Implementación para menús
+class Menu implements MenuComponent {
+    private String name;
+    private List<MenuComponent> components = new ArrayList<>();
+
+    public Menu(String name) {
+        this.name = name;
+    }
+
+    public void add(MenuComponent component) {
+        components.add(component);
+    }
+
+    public void remove(MenuComponent component) {
+        components.remove(component);
+    }
+
+    @Override
+    public void display() {
+        System.out.println("Menú: " + name);
+        for (MenuComponent component : components) {
+            component.display();
+        }
+    }
+}

@@ -1,0 +1,44 @@
+// TEMPLATE METHOD
+// Clase abstracta con el método plantilla
+abstract class PaymentProcessor {
+    public final void processPayment(double amount) {
+        validate();
+        executePayment(amount);
+        generateReceipt();
+    }
+
+    // Métodos a implementar por las subclases
+    protected abstract void validate();
+    protected abstract void executePayment(double amount);
+
+    // Método concreto que no cambia en las subclases
+    private void generateReceipt() {
+        System.out.println("Generando recibo...");
+    }
+}
+
+// Implementación para pago con tarjeta de crédito
+class CreditCardPayment extends PaymentProcessor {
+    @Override
+    protected void validate() {
+        System.out.println("Validando tarjeta de crédito...");
+    }
+
+    @Override
+    protected void executePayment(double amount) {
+        System.out.println("Procesando pago de $" + amount + " con tarjeta de crédito.");
+    }
+}
+
+// Implementación para pago con PayPal
+class PayPalPayment extends PaymentProcessor {
+    @Override
+    protected void validate() {
+        System.out.println("Autenticando cuenta de PayPal...");
+    }
+
+    @Override
+    protected void executePayment(double amount) {
+        System.out.println("Procesando pago de $" + amount + " con PayPal.");
+    }
+}

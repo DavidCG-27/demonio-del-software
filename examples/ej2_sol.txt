@@ -1,0 +1,45 @@
+// STRATEGY
+// Interfaz para el cálculo de impuestos
+interface TaxStrategy {
+    double calculateTax(double amount);
+}
+
+// Implementaciones de TaxStrategy
+class USATax implements TaxStrategy {
+    public double calculateTax(double amount) {
+        return amount * 0.07; // 7% tax
+    }
+}
+
+class UKTax implements TaxStrategy {
+    public double calculateTax(double amount) {
+        return amount * 0.2; // 20% VAT
+    }
+}
+
+class IndiaTax implements TaxStrategy {
+    public double calculateTax(double amount) {
+        return amount * 0.18; // 18% GST
+    }
+}
+
+class NoTax implements TaxStrategy {
+    public double calculateTax(double amount) {
+        return 0; // No tax
+    }
+}
+
+// Clase Invoice que usa el patrón Strategy
+class Invoice {
+    private double amount;
+    private TaxStrategy taxStrategy;
+
+    public Invoice(double amount, TaxStrategy taxStrategy) {
+        this.amount = amount;
+        this.taxStrategy = taxStrategy;
+    }
+
+    public double calculateTotal() {
+        return amount + taxStrategy.calculateTax(amount);
+    }
+}

@@ -1,0 +1,21 @@
+class Invoice {
+    private double amount;
+    private String country;
+
+    public Invoice(double amount, String country) {
+        this.amount = amount;
+        this.country = country;
+    }
+
+    public double calculateTax() {
+        if (country.equals("USA")) {
+            return amount * 0.07; // 7% tax
+        } else if (country.equals("UK")) {
+            return amount * 0.2; // 20% VAT
+        } else if (country.equals("India")) {
+            return amount * 0.18; // 18% GST
+        } else {
+            return 0; // No tax
+        }
+    }
+}

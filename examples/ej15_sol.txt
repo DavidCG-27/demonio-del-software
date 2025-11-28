@@ -1,0 +1,71 @@
+// COMPOSITE	
+// Interfaz común para todos los componentes educativos
+interface OrganizationComponent {
+    void showDetails();
+}
+
+// Implementación para estudiantes
+class Student implements OrganizationComponent {
+    private String name;
+
+    public Student(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void showDetails() {
+        System.out.println("Estudiante: " + name);
+    }
+}
+
+// Implementación para cursos
+class Course implements OrganizationComponent {
+    private String name;
+    private List<OrganizationComponent> components = new ArrayList<>();
+
+    public Course(String name) {
+        this.name = name;
+    }
+
+    public void add(OrganizationComponent component) {
+        components.add(component);
+    }
+
+    public void remove(OrganizationComponent component) {
+        components.remove(component);
+    }
+
+    @Override
+    public void showDetails() {
+        System.out.println("Curso: " + name);
+        for (OrganizationComponent component : components) {
+            component.showDetails();
+        }
+    }
+}
+
+// Implementación para departamentos
+class Department implements OrganizationComponent {
+    private String name;
+    private List<OrganizationComponent> components = new ArrayList<>();
+
+    public Department(String name) {
+        this.name = name;
+    }
+
+    public void add(OrganizationComponent component) {
+        components.add(component);
+    }
+
+    public void remove(OrganizationComponent component) {
+        components.remove(component);
+    }
+
+    @Override
+    public void showDetails() {
+        System.out.println("Departamento: " + name);
+        for (OrganizationComponent component : components) {
+            component.showDetails();
+        }
+    }
+}

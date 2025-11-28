@@ -1,0 +1,9 @@
+interface FileReader {
+    String readFile(String path);
+}
+
+class JSONReader {
+    public String parseJSON(String path) {
+        return "Datos leídos desde JSON: " + path;
+    }
+}

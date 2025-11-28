@@ -1,0 +1,25 @@
+class GameCharacter {
+    public String name;
+    public int health;
+    public int attackPower;
+
+    public GameCharacter(String name, int health, int attackPower) {
+        this.name = name;
+        this.health = health;
+        this.attackPower = attackPower;
+    }
+
+    public GameCharacter duplicate() {
+        return new GameCharacter(this.name, this.health, this.attackPower);
+    }
+}
+
+// Uso
+public class Main {
+    public static void main(String[] args) {
+        GameCharacter character1 = new GameCharacter("Guerrero", 100, 50);
+        GameCharacter character2 = character1.duplicate();
+
+        System.out.println("Personaje clonado: " + character2.name);
+    }
+}

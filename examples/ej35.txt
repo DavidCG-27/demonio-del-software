@@ -1,0 +1,30 @@
+class TemperatureSensor {
+    private double temperature;
+    private TemperatureDisplay display;
+
+    public TemperatureSensor(TemperatureDisplay display) {
+        this.display = display;
+    }
+
+    public void setTemperature(double temperature) {
+        this.temperature = temperature;
+        display.update(temperature);
+    }
+}
+
+class TemperatureDisplay {
+    public void update(double temperature) {
+        System.out.println("Temperatura actualizada: " + temperature + "°C");
+    }
+}
+
+// Uso
+public class Main {
+    public static void main(String[] args) {
+        TemperatureDisplay display = new TemperatureDisplay();
+        TemperatureSensor sensor = new TemperatureSensor(display);
+
+        sensor.setTemperature(25.0);
+        sensor.setTemperature(30.0);
+    }
+}

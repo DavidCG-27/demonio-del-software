@@ -1,0 +1,28 @@
+abstract class Node {
+    public abstract void generateCode();
+    public abstract void checkType();
+}
+
+class VariableNode extends Node {
+    @Override
+    public void generateCode() {
+        System.out.println("Generando código para variable.");
+    }
+
+    @Override
+    public void checkType() {
+        System.out.println("Chequeando tipo de la variable.");
+    }
+}
+
+class AssignmentNode extends Node {
+    @Override
+    public void generateCode() {
+        System.out.println("Generando código para asignación.");
+    }
+
+    @Override
+    public void checkType() {
+        System.out.println("Chequeando tipos en la asignación.");
+    }
+}

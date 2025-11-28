@@ -1,0 +1,56 @@
+// FACTORY METHOD
+// Clase abstracta para manejo de transport
+abstract class TransportManager {
+    public abstract Transport createTransport();
+
+    public void manage() {
+        Transport transport = createTransport();
+        transport.deliver();
+    }
+}
+
+// Subclases que implementan la fábrica
+class CarTransportManager extends TransportManager {
+    @Override
+    public Transport createTransport() {
+        return new Car();
+    }
+}
+
+class BikeTransportManager extends TransportManager {
+    @Override
+    public Transport createTransport() {
+        return new Bike();
+    }
+}
+
+class TruckTransportManager extends TransportManager {
+    @Override
+    public Transport createTransport() {
+        return new Truck();
+    }
+}
+
+// Interfaz para transportes
+interface Transport {
+    void deliver();
+}
+
+// Implementaciones concretas
+class Car implements Transport {
+    public void deliver() {
+        System.out.println("Entregando con un auto.");
+    }
+}
+
+class Bike implements Transport {
+    public void deliver() {
+        System.out.println("Entregando con una bicicleta.");
+    }
+}
+
+class Truck implements Transport {
+    public void deliver() {
+        System.out.println("Entregando con un camión.");
+    }
+}

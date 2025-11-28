@@ -1,0 +1,65 @@
+//VISITOR
+// Interfaz Visitor
+interface Visitor {
+    void visit(VariableNode variable);
+    void visit(AssignmentNode assignment);
+}
+
+// Clase base Node
+abstract class Node {
+    public abstract void accept(Visitor visitor);
+}
+
+// Clases concretas
+class VariableNode extends Node {
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+}
+
+class AssignmentNode extends Node {
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+}
+
+// Visitantes concretos
+class CodeGenerationVisitor implements Visitor {
+    @Override
+    public void visit(VariableNode variable) {
+        System.out.println("Generando código para variable.");
+    }
+
+    @Override
+    public void visit(AssignmentNode assignment) {
+        System.out.println("Generando código para asignación.");
+    }
+}
+
+class TypeCheckingVisitor implements Visitor {
+    @Override
+    public void visit(VariableNode variable) {
+        System.out.println("Chequeando tipo de la variable.");
+    }
+
+    @Override
+    public void visit(AssignmentNode assignment) {
+        System.out.println("Chequeando tipos en la asignación.");
+    }
+}
+
+// Uso
+public class Main {
+    public static void main(String[] args) {
+        Node[] nodes = {new VariableNode(), new AssignmentNode()};
+        Visitor codeGenerator = new CodeGenerationVisitor();
+        Visitor typeChecker = new TypeCheckingVisitor();
+
+        for (Node node : nodes) {
+            node.accept(codeGenerator);
+            node.accept(typeChecker);
+        }
+    }
+}

@@ -1,0 +1,78 @@
+//VISITOR
+// Interfaz del Visitor
+interface Visitor {
+    void visit(Circle circle);
+    void visit(Rectangle rectangle);
+}
+
+// Clase base para figuras
+abstract class Shape {
+    public abstract void accept(Visitor visitor);
+}
+
+// Clases concretas
+class Circle extends Shape {
+    public double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+}
+
+class Rectangle extends Shape {
+    public double width, height;
+
+    public Rectangle(double width, double height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+}
+
+// Visitantes concretos
+class DrawVisitor implements Visitor {
+    @Override
+    public void visit(Circle circle) {
+        System.out.println("Dibujando un círculo con radio: " + circle.radius);
+    }
+
+    @Override
+    public void visit(Rectangle rectangle) {
+        System.out.println("Dibujando un rectángulo de dimensiones: " + rectangle.width + "x" + rectangle.height);
+    }
+}
+
+class AreaVisitor implements Visitor {
+    @Override
+    public void visit(Circle circle) {
+        System.out.println("Área del círculo: " + (Math.PI * circle.radius * circle.radius));
+    }
+
+    @Override
+    public void visit(Rectangle rectangle) {
+        System.out.println("Área del rectángulo: " + (rectangle.width * rectangle.height));
+    }
+}
+
+// Uso
+public class Main {
+    public static void main(String[] args) {
+        Shape[] shapes = {new Circle(5), new Rectangle(4, 6)};
+        Visitor drawVisitor = new DrawVisitor();
+        Visitor areaVisitor = new AreaVisitor();
+
+        for (Shape shape : shapes) {
+            shape.accept(drawVisitor);
+            shape.accept(areaVisitor);
+        }
+    }
+}

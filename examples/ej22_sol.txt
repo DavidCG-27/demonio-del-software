@@ -1,0 +1,39 @@
+// TEMPLATE METHOD
+abstract class DataProcessor {
+    public final void process(String data) {
+        validate(data);
+        processData(data);
+        export(data);
+    }
+
+    private void validate(String data) {
+        System.out.println("Validando datos...");
+    }
+
+    protected abstract void processData(String data);
+    protected abstract void export(String data);
+}
+
+class JSONDataProcessor extends DataProcessor {
+    @Override
+    protected void processData(String data) {
+        System.out.println("Procesando datos JSON...");
+    }
+
+    @Override
+    protected void export(String data) {
+        System.out.println("Exportando resultados en formato JSON...");
+    }
+}
+
+class XMLDataProcessor extends DataProcessor {
+    @Override
+    protected void processData(String data) {
+        System.out.println("Procesando datos XML...");
+    }
+
+    @Override
+    protected void export(String data) {
+        System.out.println("Exportando resultados en formato XML...");
+    }
+}

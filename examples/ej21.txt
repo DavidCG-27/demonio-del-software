@@ -1,0 +1,21 @@
+// Preparador de té
+class TeaMaker {
+    public void prepare() {
+        System.out.println("Hirviendo agua...");
+        System.out.println("Añadiendo hojas de té...");
+        System.out.println("Vertiendo en la taza...");
+        System.out.println("Añadiendo limón...");
+        System.out.println("Té preparado.");
+    }
+}
+
+// Preparador de café
+class CoffeeMaker {
+    public void prepare() {
+        System.out.println("Hirviendo agua...");
+        System.out.println("Añadiendo café molido...");
+        System.out.println("Vertiendo en la taza...");
+        System.out.println("Añadiendo azúcar y leche...");
+        System.out.println("Café preparado.");
+    }
+}

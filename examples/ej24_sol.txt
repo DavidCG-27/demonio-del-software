@@ -1,0 +1,20 @@
+//ADAPTER
+class PaymentAdapter implements PaymentProcessor {
+    private ThirdPartyPaymentAPI thirdPartyAPI;
+
+    public PaymentAdapter(ThirdPartyPaymentAPI thirdPartyAPI) {
+        this.thirdPartyAPI = thirdPartyAPI;
+    }
+
+    @Override
+    public void pay(double amount) {
+        thirdPartyAPI.makePayment(amount);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        PaymentProcessor payment = new PaymentAdapter(new ThirdPartyPaymentAPI());
+        payment.pay(100.0);
+    }
+}

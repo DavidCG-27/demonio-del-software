@@ -1,0 +1,44 @@
+//COMMAND
+// Receptor
+class Kitchen {
+    public void prepareMeal(String meal) {
+        System.out.println("Preparando: " + meal);
+    }
+}
+
+// Interfaz Command
+interface Command {
+    void execute();
+}
+
+// Comando concreto
+class PrepareMealCommand implements Command {
+    private Kitchen kitchen;
+    private String meal;
+
+    public PrepareMealCommand(Kitchen kitchen, String meal) {
+        this.kitchen = kitchen;
+        this.meal = meal;
+    }
+
+    @Override
+    public void execute() {
+        kitchen.prepareMeal(meal);
+    }
+}
+
+// Invoker
+class Waiter {
+    private List<Command> commands = new ArrayList<>();
+
+    public void takeOrder(Command command) {
+        commands.add(command);
+    }
+
+    public void sendOrders() {
+        for (Command command : commands) {
+            command.execute();
+        }
+        commands.clear();
+    }
+}

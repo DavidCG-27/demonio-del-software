@@ -1,0 +1,28 @@
+abstract class Report {
+    public abstract void exportToPDF();
+    public abstract void exportToCSV();
+}
+
+class SalesReport extends Report {
+    @Override
+    public void exportToPDF() {
+        System.out.println("Exportando reporte de ventas a PDF.");
+    }
+
+    @Override
+    public void exportToCSV() {
+        System.out.println("Exportando reporte de ventas a CSV.");
+    }
+}
+
+class InventoryReport extends Report {
+    @Override
+    public void exportToPDF() {
+        System.out.println("Exportando reporte de inventario a PDF.");
+    }
+
+    @Override
+    public void exportToCSV() {
+        System.out.println("Exportando reporte de inventario a CSV.");
+    }
+}

@@ -1,0 +1,47 @@
+// COMPOSITE
+// Interfaz común para empleados y equipos
+interface OrganizationComponent {
+    void showDetails();
+}
+
+// Implementación para empleados individuales
+class Employee implements OrganizationComponent {
+    private String name;
+    private String role;
+
+    public Employee(String name, String role) {
+        this.name = name;
+        this.role = role;
+    }
+
+    @Override
+    public void showDetails() {
+        System.out.println("Empleado: " + name + ", Rol: " + role);
+    }
+}
+
+// Implementación para equipos
+class Team implements OrganizationComponent {
+    private String name;
+    private List<OrganizationComponent> members = new ArrayList<>();
+
+    public Team(String name) {
+        this.name = name;
+    }
+
+    public void add(OrganizationComponent component) {
+        members.add(component);
+    }
+
+    public void remove(OrganizationComponent component) {
+        members.remove(component);
+    }
+
+    @Override
+    public void showDetails() {
+        System.out.println("Equipo: " + name);
+        for (OrganizationComponent member : members) {
+            member.showDetails();
+        }
+    }
+}

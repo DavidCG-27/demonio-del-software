@@ -1,0 +1,19 @@
+// Procesador de informes en PDF
+class PDFReport {
+    public void generateReport(String data) {
+        System.out.println("Validando datos para el informe PDF...");
+        System.out.println("Procesando datos...");
+        System.out.println("Generando archivo PDF...");
+        System.out.println("Informe PDF generado con éxito.");
+    }
+}
+
+// Procesador de informes en CSV
+class CSVReport {
+    public void generateReport(String data) {
+        System.out.println("Validando datos para el informe CSV...");
+        System.out.println("Procesando datos...");
+        System.out.println("Generando archivo CSV...");
+        System.out.println("Informe CSV generado con éxito.");
+    }
+}

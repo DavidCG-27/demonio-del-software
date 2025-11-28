@@ -1,0 +1,38 @@
+// TEMPLATE METHOD
+// Clase abstracta con el método plantilla
+abstract class ReportProcessor {
+    public final void generateReport(String data) {
+        validateData(data);
+        processData(data);
+        export(data);
+    }
+
+    // Método concreto para validar datos
+    private void validateData(String data) {
+        System.out.println("Validando datos...");
+    }
+
+    // Método concreto para procesar datos
+    private void processData(String data) {
+        System.out.println("Procesando datos...");
+    }
+
+    // Método abstracto para exportar datos (implementado por las subclases)
+    protected abstract void export(String data);
+}
+
+// Implementación para informes en PDF
+class PDFReport extends ReportProcessor {
+    @Override
+    protected void export(String data) {
+        System.out.println("Generando archivo PDF...");
+    }
+}
+
+// Implementación para informes en CSV
+class CSVReport extends ReportProcessor {
+    @Override
+    protected void export(String data) {
+        System.out.println("Generando archivo CSV...");
+    }
+}

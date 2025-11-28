@@ -1,0 +1,76 @@
+// Clase para representar estudiantes
+class Student {
+    private String name;
+
+    public Student(String name) {
+        this.name = name;
+    }
+
+    public void showDetails() {
+        System.out.println("Estudiante: " + name);
+    }
+}
+
+// Clase para representar cursos
+class Course {
+    private String name;
+    private List<Student> students = new ArrayList<>();
+
+    public Course(String name) {
+        this.name = name;
+    }
+
+    public void addStudent(Student student) {
+        students.add(student);
+    }
+
+    public void showDetails() {
+        System.out.println("Curso: " + name);
+        for (Student student : students) {
+            student.showDetails();
+        }
+    }
+}
+
+// Clase para representar departamentos
+class Department {
+    private String name;
+    private List<Course> courses = new ArrayList<>();
+
+    public Department(String name) {
+        this.name = name;
+    }
+
+    public void addCourse(Course course) {
+        courses.add(course);
+    }
+
+    public void showDetails() {
+        System.out.println("Departamento: " + name);
+        for (Course course : courses) {
+            course.showDetails();
+        }
+    }
+}
+
+// Uso sin Composite
+public class Main {
+    public static void main(String[] args) {
+        Student s1 = new Student("Juan");
+        Student s2 = new Student("Ana");
+
+        Course course1 = new Course("Matemáticas");
+        course1.addStudent(s1);
+        course1.addStudent(s2);
+
+        Department department = new Department("Ciencias");
+        department.addCourse(course1);
+
+        department.showDetails();
+        // Salida:
+        // Departamento: Ciencias
+        // Curso: Matemáticas
+        // Estudiante: Juan
+        // Estudiante: Ana
+    }
+}

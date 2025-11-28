@@ -1,0 +1,9 @@
+interface PaymentProcessor {
+    void pay(double amount);
+}
+
+class ThirdPartyPaymentAPI {
+    public void makePayment(double amount) {
+        System.out.println("Pago realizado con API de terceros: $" + amount);
+    }
+}

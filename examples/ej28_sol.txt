@@ -1,0 +1,60 @@
+//COMMAND
+// Receptor
+class TextEditor {
+    private StringBuilder text = new StringBuilder();
+
+    public void write(String words) {
+        text.append(words);
+    }
+
+    public void deleteLast(int length) {
+        text.delete(text.length() - length, text.length());
+    }
+
+    public String getText() {
+        return text.toString();
+    }
+}
+
+// Interfaz Command
+interface Command {
+    void execute();
+    void undo();
+}
+
+// Comando concreto para escribir texto
+class WriteCommand implements Command {
+    private TextEditor editor;
+    private String text;
+
+    public WriteCommand(TextEditor editor, String text) {
+        this.editor = editor;
+        this.text = text;
+    }
+
+    @Override
+    public void execute() {
+        editor.write(text);
+    }
+
+    @Override
+    public void undo() {
+        editor.deleteLast(text.length());
+    }
+}
+
+// Invoker
+class CommandManager {
+    private Stack<Command> commandHistory = new Stack<>();
+
+    public void executeCommand(Command command) {
+        command.execute();
+        commandHistory.push(command);
+    }
+
+    public void undo() {
+        if (!commandHistory.isEmpty()) {
+            commandHistory.pop().undo();
+        }
+    }
+}

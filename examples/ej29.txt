@@ -1,0 +1,25 @@
+class Kitchen {
+    public void preparePasta() {
+        System.out.println("Preparando pasta.");
+    }
+
+    public void preparePizza() {
+        System.out.println("Preparando pizza.");
+    }
+}
+
+class Waiter {
+    private Kitchen kitchen;
+
+    public Waiter(Kitchen kitchen) {
+        this.kitchen = kitchen;
+    }
+
+    public void takeOrder(String order) {
+        if (order.equals("Pasta")) {
+            kitchen.preparePasta();
+        } else if (order.equals("Pizza")) {
+            kitchen.preparePizza();
+        }
+    }
+}

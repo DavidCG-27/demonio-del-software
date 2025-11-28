@@ -1,0 +1,56 @@
+//DECORATOR
+interface Ticket {
+    void printTicket();
+}
+
+class BaseTicket implements Ticket {
+    @Override
+    public void printTicket() {
+        System.out.println("Contenido del ticket");
+    }
+}
+
+abstract class TicketDecorator implements Ticket {
+    protected Ticket decoratedTicket;
+
+    public TicketDecorator(Ticket ticket) {
+        this.decoratedTicket = ticket;
+    }
+
+    @Override
+    public void printTicket() {
+        decoratedTicket.printTicket();
+    }
+}
+
+class HeaderDecorator extends TicketDecorator {
+    public HeaderDecorator(Ticket ticket) {
+        super(ticket);
+    }
+
+    @Override
+    public void printTicket() {
+        System.out.println("Cabecera personalizada");
+        super.printTicket();
+    }
+}
+
+class FooterDecorator extends TicketDecorator {
+    public FooterDecorator(Ticket ticket) {
+        super(ticket);
+    }
+
+    @Override
+    public void printTicket() {
+        super.printTicket();
+        System.out.println("Pie de página personalizado");
+    }
+}
+
+// Uso
+public class Main {
+    public static void main(String[] args) {
+        Ticket ticket = new FooterDecorator(new HeaderDecorator(new BaseTicket()));
+        ticket.printTicket();
+    }
+}

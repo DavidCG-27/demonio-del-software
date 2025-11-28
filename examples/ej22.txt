@@ -1,0 +1,15 @@
+class JSONDataProcessor {
+    public void process(String data) {
+        System.out.println("Validando datos JSON...");
+        System.out.println("Procesando datos JSON...");
+        System.out.println("Exportando resultados en formato JSON...");
+    }
+}
+
+class XMLDataProcessor {
+    public void process(String data) {
+        System.out.println("Validando datos XML...");
+        System.out.println("Procesando datos XML...");
+        System.out.println("Exportando resultados en formato XML...");
+    }
+}

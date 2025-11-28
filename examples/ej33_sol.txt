@@ -1,0 +1,54 @@
+//DECORATOR
+interface Message {
+    void send(String content);
+}
+
+class SimpleMessage implements Message {
+    @Override
+    public void send(String content) {
+        System.out.println("Enviando mensaje: " + content);
+    }
+}
+
+abstract class MessageDecorator implements Message {
+    protected Message message;
+
+    public MessageDecorator(Message message) {
+        this.message = message;
+    }
+
+    @Override
+    public void send(String content) {
+        message.send(content);
+    }
+}
+
+class EncryptedMessage extends MessageDecorator {
+    public EncryptedMessage(Message message) {
+        super(message);
+    }
+
+    @Override
+    public void send(String content) {
+        super.send("Encrypted(" + content + ")");
+    }
+}
+
+class CompressedMessage extends MessageDecorator {
+    public CompressedMessage(Message message) {
+        super(message);
+    }
+
+    @Override
+    public void send(String content) {
+        super.send("Compressed(" + content + ")");
+    }
+}
+
+// Uso
+public class Main {
+    public static void main(String[] args) {
+        Message message = new CompressedMessage(new EncryptedMessage(new SimpleMessage()));
+        message.send("Hola mundo");
+    }
+}

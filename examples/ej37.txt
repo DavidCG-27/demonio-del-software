@@ -1,0 +1,30 @@
+class AlarmSystem {
+    private boolean alarmActive;
+    private SecurityControl control;
+
+    public AlarmSystem(SecurityControl control) {
+        this.control = control;
+    }
+
+    public void setAlarm(boolean status) {
+        this.alarmActive = status;
+        control.notifyAlarmStatus(status);
+    }
+}
+
+class SecurityControl {
+    public void notifyAlarmStatus(boolean status) {
+        System.out.println("Estado de la alarma: " + (status ? "ACTIVA" : "INACTIVA"));
+    }
+}
+
+// Uso
+public class Main {
+    public static void main(String[] args) {
+        SecurityControl control = new SecurityControl();
+        AlarmSystem alarm = new AlarmSystem(control);
+
+        alarm.setAlarm(true);
+        alarm.setAlarm(false);
+    }
+}

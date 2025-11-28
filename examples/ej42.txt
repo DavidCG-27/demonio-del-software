@@ -1,0 +1,29 @@
+class Car {
+    private String model;
+    private String color;
+    private int year;
+
+    public Car(String model, String color, int year) {
+        this.model = model;
+        this.color = color;
+        this.year = year;
+    }
+
+    public Car duplicate() {
+        return new Car(this.model, this.color, this.year);
+    }
+
+    public void showDetails() {
+        System.out.println("Auto: " + model + ", Color: " + color + ", Año: " + year);
+    }
+}
+
+// Uso
+public class Main {
+    public static void main(String[] args) {
+        Car car1 = new Car("Toyota Corolla", "Rojo", 2022);
+        Car car2 = car1.duplicate();
+
+        car2.showDetails();
+    }
+}

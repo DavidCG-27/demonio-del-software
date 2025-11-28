@@ -1,0 +1,19 @@
+class Window {
+    private boolean hasBorder;
+    private boolean hasScrollBar;
+
+    public Window(boolean hasBorder, boolean hasScrollBar) {
+        this.hasBorder = hasBorder;
+        this.hasScrollBar = hasScrollBar;
+    }
+
+    public void draw() {
+        if (hasBorder) {
+            System.out.println("Dibujando borde");
+        }
+        System.out.println("Dibujando ventana");
+        if (hasScrollBar) {
+            System.out.println("Dibujando barra de desplazamiento");
+        }
+    }
+}
