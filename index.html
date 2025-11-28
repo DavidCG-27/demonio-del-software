@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demonio del Software</title>
     
-    <!-- Tailwind CSS -->
+    <!-- FAVICON (Icono de la pestaña) -->
+    <!-- Emoji codificado (%F0%9F%91%BB) para asegurar compatibilidad universal -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%91%BB</text></svg>">
+
+    <!-- Tailwind CSS (CDN para desarrollo rápido/Pages) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Mermaid JS -->
@@ -17,8 +21,10 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+    <!-- CSS Personalizado -->
     <link rel="stylesheet" href="css/styles.css">
 
+    <!-- Configuración Tailwind -->
     <script>
         tailwind.config = {
             theme: {
@@ -41,26 +47,40 @@
 </head>
 <body class="bg-gray-50 text-gray-800 h-screen flex flex-col overflow-hidden">
 
+    <!-- Header -->
     <header class="bg-white border-b border-gray-200 shadow-sm z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center gap-3 cursor-pointer" data-nav="home">
-                <div class="bg-oviedo-DEFAULT text-white p-2 rounded-lg">
-                    <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                <!-- LOGO APLICACIÓN -->
+                <!-- Usamos 'bg-indigo-700' estándar de Tailwind para asegurar que el color se vea siempre -->
+                <div class="bg-indigo-700 text-white p-2 rounded-lg flex items-center justify-center shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 10h.01"></path>
+                        <path d="M15 10h.01"></path>
+                        <path d="M12 2a8 8 0 0 0-8 8v12l3-3 2.5 2.5L12 19l2.5 2.5L17 19l3 3V10a8 8 0 0 0-8-8z"></path>
+                    </svg>
                 </div>
                 <div>
                     <h1 class="font-bold text-xl text-gray-900 tracking-tight">Demonio del <span class="text-oviedo-DEFAULT">Software</span></h1>
                     <p class="text-xs text-gray-500 font-mono">Ingeniería del Software</p>
                 </div>
             </div>
-            <nav class="flex gap-4">
-                <button data-nav="upload" class="text-sm font-medium text-gray-600 hover:text-oviedo-DEFAULT transition-colors">Ejercicios</button>
-                <button data-nav="diagrams" class="text-sm font-medium text-gray-600 hover:text-oviedo-DEFAULT transition-colors">Diagramas</button>
+            <nav class="flex gap-1 sm:gap-4 items-center">
+                <button data-nav="upload" class="text-sm font-medium text-gray-600 hover:text-oviedo-DEFAULT px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">Ejercicios</button>
+                <button data-nav="diagrams" class="text-sm font-medium text-gray-600 hover:text-oviedo-DEFAULT px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">Diagramas</button>
+                <div class="h-4 w-px bg-gray-300 mx-1"></div>
+                <button data-nav="help" class="text-sm font-medium text-gray-600 hover:text-oviedo-DEFAULT px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">Ayuda</button>
+                <button data-nav="about" class="text-gray-400 hover:text-oviedo-DEFAULT p-2 rounded-full hover:bg-gray-50 transition-colors" title="Acerca de">
+                    <i data-lucide="info" class="w-5 h-5"></i>
+                </button>
             </nav>
         </div>
     </header>
 
+    <!-- Main Content Area -->
     <main id="main-container" class="flex-1 overflow-auto relative">
         
+        <!-- VIEW: HOME -->
         <section id="view-home" class="h-full flex flex-col items-center justify-center p-6 text-center fade-in">
             <div class="bg-white p-10 rounded-2xl shadow-xl max-w-2xl border border-gray-100">
                 <div class="mb-6 flex justify-center">
@@ -78,7 +98,7 @@
                         <i data-lucide="code-2"></i>
                         <div class="text-left">
                             <span class="block font-bold">Practicar Código</span>
-                            <span class="text-xs text-gray-500 group-hover:text-indigo-400">Sube tus .txt</span>
+                            <span class="text-xs text-gray-500 group-hover:text-indigo-400">Refactorización</span>
                         </div>
                     </button>
                     <button data-nav="diagrams" class="group flex items-center justify-center gap-3 p-4 bg-white border-2 border-gray-200 text-gray-700 rounded-xl hover:border-oviedo-DEFAULT hover:text-oviedo-DEFAULT transition-all shadow-sm hover:shadow-md">
@@ -92,6 +112,135 @@
             </div>
         </section>
 
+        <!-- VIEW: HELP -->
+        <section id="view-help" class="hidden h-full overflow-y-auto p-6 fade-in bg-gray-50">
+            <div class="max-w-4xl mx-auto space-y-8 pb-12">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-gray-900">¿Cómo usar la aplicación?</h2>
+                    <p class="text-gray-600 mt-2">Guía rápida para sacar el máximo provecho a tus sesiones de estudio.</p>
+                </div>
+
+                <!-- Section: Ejercicios de Código -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-indigo-100 p-3 rounded-lg text-oviedo-DEFAULT">
+                            <i data-lucide="code-2" class="w-6 h-6"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Modo Práctica de Código</h3>
+                            <p class="text-gray-600 mb-4">
+                                Este modo te presenta fragmentos de código con "Code Smells" que debes refactorizar aplicando patrones de diseño.
+                            </p>
+                            
+                            <h4 class="font-bold text-sm text-gray-800 uppercase tracking-wide mb-3">Cargar ejercicios:</h4>
+                            
+                            <div class="border border-gray-200 rounded-xl p-4 hover:border-indigo-300 transition-colors bg-blue-50">
+                                <div class="font-bold text-indigo-700 mb-2 flex items-center gap-2">
+                                    <i data-lucide="folder-git-2" class="w-4 h-4"></i> Carpeta de Ejemplos
+                                </div>
+                                <p class="text-sm text-gray-700 mb-2">
+                                    Existe una carpeta llamada <strong>`examples`</strong> en el repositorio con ejercicios de prueba.
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    Para usarla, simplemente arrastra esa carpeta entera (o los archivos `.txt` que contiene) a la zona de carga.
+                                </p>
+                            </div>
+
+                            <div class="mt-4 border border-gray-200 rounded-xl p-4 hover:border-indigo-300 transition-colors">
+                                <div class="font-bold text-gray-700 mb-2">Subir tus propios archivos</div>
+                                <p class="text-sm text-gray-600">Si creas tus propios ejercicios, usa esta nomenclatura para los archivos:</p>
+                                <ul class="text-xs font-mono text-gray-500 mt-2 space-y-1">
+                                    <li>• Problema: ej01.txt</li>
+                                    <li>• Solución: ej01_sol.txt</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Diagramas -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-indigo-100 p-3 rounded-lg text-oviedo-DEFAULT">
+                            <i data-lucide="network" class="w-6 h-6"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Modo Patrones UML</h3>
+                            <p class="text-gray-600 mb-4">
+                                Un sistema de "Flashcards" para memorizar la estructura de las clases de los patrones GoF.
+                            </p>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-600 ml-1">
+                                <li>La aplicación te mostrará el <strong>nombre de un patrón</strong> aleatorio (ej: Strategy).</li>
+                                <li>Toma un papel y dibuja el diagrama de clases correspondiente.</li>
+                                <li>Pulsa <strong>"Ver Solución"</strong> para revelar el diagrama correcto generado con Mermaid.js.</li>
+                                <li>Compara tu dibujo con la solución oficial.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW: ABOUT -->
+        <section id="view-about" class="hidden h-full flex flex-col items-center justify-center p-6 fade-in bg-gray-50">
+            <div class="bg-white p-10 rounded-2xl shadow-xl max-w-lg w-full border border-gray-100 text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
+                
+                <div class="mb-6 flex justify-center">
+                    <div class="bg-gray-900 text-white p-4 rounded-2xl shadow-lg transform rotate-3">
+                        <i data-lucide="ghost" class="w-10 h-10"></i>
+                    </div>
+                </div>
+                
+                <h2 class="text-2xl font-bold text-gray-900 mb-1">Demonio del Software</h2>
+                <p class="text-sm text-gray-500 font-mono mb-6">v1.0.0 &bull; Edición Estudiante</p>
+                
+                <p class="text-gray-600 mb-8 leading-relaxed">
+                    Aplicación desarrollada para facilitar el estudio de la asignatura 
+                    <strong>Diseño del Software</strong>. Combina práctica de refactorización 
+                    y memorización visual de patrones arquitectónicos.
+                </p>
+
+                <p class="text-gray-600 mb-8 leading-relaxed">
+                    <strong>Autor: </strong> David Covián Gómez.
+                </p>
+
+                <div class="border-t border-gray-100 pt-6">
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Tecnologías</h4>
+                    <div class="flex justify-center gap-4 text-gray-500">
+                        <div class="flex flex-col items-center gap-1">
+                            <i data-lucide="wind" class="w-5 h-5 hover:text-cyan-500 transition-colors"></i>
+                            <span class="text-[10px]">Tailwind</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-1">
+                            <i data-lucide="code" class="w-5 h-5 hover:text-yellow-500 transition-colors"></i>
+                            <span class="text-[10px]">JS ES6</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-1">
+                            <i data-lucide="share-2" class="w-5 h-5 hover:text-pink-500 transition-colors"></i>
+                            <span class="text-[10px]">Mermaid</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <button data-nav="home" class="text-sm font-medium text-indigo-600 hover:text-indigo-800 hover:underline">
+                        Volver al inicio
+                    </button>
+                </div>
+            </div>
+            <div class="mb-6 flex justify-center">
+                <p class="text-gray-600 mb-8 leading-relaxed">
+                    Más proyectos personales en 
+                    <strong>
+                        <a href="https://github.com/DavidCG-27" class="text-oviedo-DEFAULT hover:underline" target="_blank" rel="noopener noreferrer">
+                        https://github.com/DavidCG-27
+                        </a>
+                    </strong>
+                </p>
+            </div>
+        </section>
+
+        <!-- VIEW: UPLOAD -->
         <section id="view-upload" class="hidden h-full flex flex-col items-center justify-center p-6 fade-in">
             <div class="bg-white p-8 rounded-2xl shadow-lg max-w-3xl w-full border border-gray-100">
                 <div class="flex items-center gap-3 mb-6">
@@ -116,6 +265,7 @@
             </div>
         </section>
 
+        <!-- VIEW: CODE PRACTICE -->
         <section id="view-practice" class="hidden h-full flex flex-col bg-gray-100">
             <div class="bg-white border-b border-gray-200 px-4 py-2 flex items-center justify-between shadow-sm">
                 <div class="flex items-center gap-4">
@@ -149,32 +299,36 @@
                 </div>
                 <div class="w-1/2 flex flex-col bg-white">
                     <div class="px-4 py-2 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
-                        <span id="right-panel-title" class="text-xs font-bold text-gray-500 uppercase tracking-wider">Código Original (Mal Diseño)</span>
+                        <span id="right-panel-title" class="text-xs font-bold text-gray-500 uppercase tracking-wider">Código Original (Mal Olor)</span>
                     </div>
                     <div id="problem-content" class="flex-1 p-4 font-mono text-sm overflow-auto bg-[#f8fafc] text-gray-800 whitespace-pre-wrap border-l-4 border-red-400"></div>
                     <div id="solution-content" class="hidden flex-1 p-4 font-mono text-sm overflow-auto bg-[#f0fdf4] text-gray-800 whitespace-pre-wrap border-l-4 border-green-500"></div>
                 </div>
             </div>
             
+            <!-- Result Footer (Hidden until check) -->
             <div id="result-footer" class="hidden bg-white border-t border-gray-200 p-4 text-center">
                 <p class="text-sm text-gray-600">Tiempo final: <span id="final-time" class="font-bold text-black"></span></p>
             </div>
         </section>
 
+        <!-- VIEW: DIAGRAMS -->
         <section id="view-diagrams" class="hidden h-full flex flex-col bg-gray-50">
             <div class="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between shadow-sm">
                  <button data-nav="home" class="text-gray-500 hover:text-red-500 text-sm flex items-center gap-1 font-medium">
                     <i data-lucide="arrow-left" class="w-4 h-4"></i> Volver
                 </button>
                 <h2 class="font-bold text-lg">Práctica de Patrones UML</h2>
-                <div class="w-16"></div> 
+                <div class="w-16"></div> <!-- Spacer -->
             </div>
 
             <div class="flex-1 flex flex-col items-center justify-center p-6">
                 <div class="w-full max-w-4xl h-[600px] perspective-1000 relative">
                     
+                    <!-- Card Container -->
                     <div id="diagram-card" class="relative w-full h-full transition-all duration-500 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden flex flex-col">
                         
+                        <!-- Question State -->
                         <div id="diagram-question" class="absolute inset-0 flex flex-col items-center justify-center p-10 bg-white z-10">
                             <span class="text-sm font-bold text-indigo-800 uppercase tracking-widest mb-4">Dibuja el patrón</span>
                             <h1 id="pattern-name" class="text-5xl font-extrabold text-gray-900 text-center mb-8">...</h1>
@@ -187,6 +341,7 @@
                             </button>
                         </div>
 
+                        <!-- Solution State -->
                         <div id="diagram-solution" class="absolute inset-0 bg-white flex flex-col opacity-0 pointer-events-none transition-opacity duration-300">
                             <div class="bg-gray-50 px-6 py-3 border-b border-gray-200 flex justify-between items-center">
                                 <h3 class="font-bold text-gray-700" id="sol-pattern-name">...</h3>
@@ -196,7 +351,7 @@
                             </div>
                             <div class="flex-1 overflow-auto p-4 flex items-center justify-center bg-white">
                                 <div id="mermaid-container" class="w-full h-full flex items-center justify-center">
-                                    <!-- graph -->
+                                    <!-- Mermaid graph goes here -->
                                 </div>
                             </div>
                         </div>
@@ -206,6 +361,7 @@
             </div>
         </section>
 
+        <!-- VIEW: FINISHED -->
         <section id="view-finished" class="hidden h-full flex flex-col items-center justify-center p-6 text-center fade-in">
              <div class="bg-white p-10 rounded-2xl shadow-xl max-w-md border border-gray-100">
                 <div class="mb-6 flex justify-center">
@@ -223,6 +379,7 @@
 
     </main>
 
+    <!-- JS: Punto de Entrada (Module) -->
     <script type="module" src="js/main.js"></script>
 </body>
 </html>
